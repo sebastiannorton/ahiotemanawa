@@ -1,17 +1,39 @@
 #!/usr/bin/env node
-/* Regenerates js/gallery-manifest.js from public/images/gallery/<folder>.
+/* Regenerates js/gallery-manifest.js from the generated WebP gallery
+   thumbnails in public/images/gallery-web/<folder>/thumbs.
+   Falls back to the source originals in public/images/gallery/<folder>
+   (mapping each name to its .webp derivative) when no WebP thumbnails
+   exist yet, so the manifest always lists .webp files.
    Run via scripts/optimize-images.sh (or directly: node scripts/build-gallery-manifest.js). */
 "use strict";
 const fs = require("fs");
+const path = require("path");
 
 const folders = ["whare", "whenua", "tangata"];
 const out = {};
-for (const d of folders) {
-  const dir = `public/images/gallery/${d}`;
-  out[d] = fs
+
+function listWebp(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => /\.webp$/i.test(f) && !f.startsWith("."))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+}
+
+function listOriginalsAsWebp(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs
     .readdirSync(dir)
     .filter((f) => /\.(jpe?g|png|gif|webp)$/i.test(f) && !f.startsWith("."))
+    .map((f) => f.replace(/\.[^.]+$/, ".webp"))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+}
+
+for (const d of folders) {
+  const thumbs = listWebp(path.join("public/images/gallery-web", d, "thumbs"));
+  out[d] = thumbs.length
+    ? thumbs
+    : listOriginalsAsWebp(path.join("public/images/gallery", d));
 }
 
 const js =

@@ -111,7 +111,19 @@ Use these as drafts; adjust wording once real photos are supplied and can be che
 
 ---
 
-## 6. Open Items
+## 6. WebP derivatives (added for performance)
+
+The filenames in the tables above remain the authoritative **source** asset
+names and are **not** renamed. To speed up loading, `scripts/optimize-images.sh`
+additionally generates a `.webp` copy beside each content image (e.g.
+`home-hero-lake-taupo.jpg` → `home-hero-lake-taupo.webp`) and the pages serve
+the WebP via a `<picture>` element with the original JPG as fallback. The
+gallery strips and full-screen overlay likewise load the `.webp` copies that the
+script writes into `public/images/gallery-web/<folder>/thumbs/` and `…/full/`.
+
+---
+
+## 7. Open Items
 
 - Actual photo source files have not yet been delivered — this manifest specifies target filenames and placement only. Request final exported images from the client at the agreed filenames above (or rename on receipt).
 - No favicon source file has been supplied; a placeholder koru-icon favicon should be generated from LOGO_01 once that asset exists.

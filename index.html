@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=17">
+  <link rel="stylesheet" href="css/styles.css?v=18">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 </head>
 <body>
@@ -35,10 +35,14 @@
       </div>
     </header>
 
-    <!-- Hero photo (IMAGE_01) — full-width band -->
+    <!-- Hero photo (IMAGE_01) — full-width band (WebP + JPG fallback) -->
     <div class="asset hero-asset">
-      <img class="site-image" src="public/images/home/home-hero-lake-taupo.JPG"
-           alt="Panoramic view of Lake Taupo and surrounding mountains">
+      <picture>
+        <source type="image/webp" srcset="public/images/home/home-hero-lake-taupo.webp">
+        <img class="site-image" src="public/images/home/home-hero-lake-taupo.JPG"
+             alt="Panoramic view of Lake Taupo and surrounding mountains"
+             decoding="async" fetchpriority="high">
+      </picture>
     </div>
   </section>
 
@@ -67,24 +71,36 @@
       It is a calling home to yourself.&rdquo;</blockquote>
   </div>
 
-  <!-- Photo strip — 4 images in a row (IMAGE_02–05) -->
+  <!-- Photo strip — 4 images in a row (IMAGE_02–05), WebP + JPG fallback -->
   <div class="section container">
     <div class="home-strip">
       <div class="asset" style="aspect-ratio: 1 / 1;">
-        <img class="site-image" src="public/images/home/home-strip-group-01.jpeg"
-             alt="Group of people smiling together at Ahi o te Manawa">
+        <picture>
+          <source type="image/webp" srcset="public/images/home/home-strip-group-01.webp">
+          <img class="site-image" src="public/images/home/home-strip-group-01.jpeg"
+               alt="Group of people smiling together at Ahi o te Manawa" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="asset" style="aspect-ratio: 1 / 1;">
-        <img class="site-image" src="public/images/home/home-strip-diningtable-02.jpg"
-             alt="Group of men gathered around an indoor dining table">
+        <picture>
+          <source type="image/webp" srcset="public/images/home/home-strip-diningtable-02.webp">
+          <img class="site-image" src="public/images/home/home-strip-diningtable-02.jpg"
+               alt="Group of men gathered around an indoor dining table" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="asset" style="aspect-ratio: 1 / 1;">
-        <img class="site-image" src="public/images/home/home-strip-signpost-dog-03.jpg"
-             alt="Wooden sign reading 'Ahi o te Manawa' on a forest path, with a dog sitting beside it">
+        <picture>
+          <source type="image/webp" srcset="public/images/home/home-strip-signpost-dog-03.webp">
+          <img class="site-image" src="public/images/home/home-strip-signpost-dog-03.jpg"
+               alt="Wooden sign reading 'Ahi o te Manawa' on a forest path, with a dog sitting beside it" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="asset" style="aspect-ratio: 1 / 1;">
-        <img class="site-image" src="public/images/home/home-strip-threemen-04.jpg"
-             alt="Three men standing together outdoors on a hillside">
+        <picture>
+          <source type="image/webp" srcset="public/images/home/home-strip-threemen-04.webp">
+          <img class="site-image" src="public/images/home/home-strip-threemen-04.jpg"
+               alt="Three men standing together outdoors on a hillside" loading="lazy" decoding="async">
+        </picture>
       </div>
     </div>
   </div>
@@ -147,8 +163,11 @@
   <div class="section container two-col">
     <div class="media">
       <div class="asset" style="aspect-ratio: 3 / 4;">
-        <img class="site-image" src="public/images/home/guardian-jay-bennett.jpg"
-             alt="Jay Bennett, guardian of Ahi o te Manawa">
+        <picture>
+          <source type="image/webp" srcset="public/images/home/guardian-jay-bennett.webp">
+          <img class="site-image" src="public/images/home/guardian-jay-bennett.jpg"
+               alt="Jay Bennett, guardian of Ahi o te Manawa" loading="lazy" decoding="async">
+        </picture>
       </div>
       <p class="photo-caption">Jay Bennett</p>
     </div>
@@ -178,8 +197,11 @@
     </div>
     <div class="media">
       <div class="asset" style="aspect-ratio: 3 / 4;">
-        <img class="site-image" src="public/images/home/guardian-jason-horton.jpg"
-             alt="Jason Horton, guardian of Ahi o te Manawa">
+        <picture>
+          <source type="image/webp" srcset="public/images/home/guardian-jason-horton.webp">
+          <img class="site-image" src="public/images/home/guardian-jason-horton.jpg"
+               alt="Jason Horton, guardian of Ahi o te Manawa" loading="lazy" decoding="async">
+        </picture>
       </div>
       <p class="photo-caption">Jason Horton</p>
     </div>
