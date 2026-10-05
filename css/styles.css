@@ -402,20 +402,27 @@ blockquote { margin: 0; }
   margin-inline: auto;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons (solid filled) ---------- */
+/* Filled by default using the confirmed brand palette: solid brand-green
+   background with white text (5.7:1 contrast, passes WCAG AA). Hover deepens
+   to near-black with white text (17:1). No ghost/outline buttons anywhere. */
 .btn {
   display: inline-block;
   padding: .65rem 1.3rem;
-  border: 1px solid var(--near-black);
+  border: 1px solid var(--brand-green);
   border-radius: 10px;
-  background: none;
-  color: var(--near-black);
+  background: var(--brand-green);
+  color: #fff;
   font: 600 .92rem var(--font);
   text-decoration: none;
   cursor: pointer;
-  transition: background .2s ease, color .2s ease;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
 }
-.btn:hover { background: var(--near-black); color: #fff; }
+.btn:hover {
+  background: var(--near-black);
+  border-color: var(--near-black);
+  color: #fff;
+}
 
 /* ---------- Upcoming events cards ---------- */
 .events-group { padding: 3.5rem 1.25rem 1.5rem; }
@@ -517,7 +524,9 @@ blockquote { margin: 0; }
 .rss-issue { font-size: .75rem; color: var(--secondary); margin: 0 0 .35rem; }
 .rss-card h4 { font-size: 1rem; font-weight: 600; margin: 0 0 .4rem; }
 .rss-card p { font-size: .875rem; margin: 0 0 .6rem; }
-.rss-card a { color: var(--brand-green); font-weight: 600; }
+/* plain inline links stay brand-green; the read-more CTA is a filled .btn */
+.rss-card a:not(.btn) { color: var(--brand-green); font-weight: 600; }
+.rss-card a.btn { margin-top: .35rem; }
 .rss-state { color: var(--secondary); font-size: .9rem; }
 /* ---------- Galleries: three auto-scrolling filmstrips (half speed) ---------- */
 .gallery-shell {
@@ -622,8 +631,8 @@ blockquote { margin: 0; }
   position: fixed;
   z-index: 1001;
   border: 0;
-  background: rgba(255, 255, 255, .09);
-  color: #fff;
+  background: #fff;                 /* solid fill: clearly visible on the dark overlay */
+  color: var(--near-black);
   font-size: 2rem;
   line-height: 1;
   width: 48px;
@@ -633,9 +642,9 @@ blockquote { margin: 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background .25s ease;
+  transition: background .25s ease, color .25s ease;
 }
-.lb-btn:hover { background: rgba(255, 255, 255, .24); }
+.lb-btn:hover { background: var(--brand-green); color: #fff; }
 .lb-close { top: 14px; right: 16px; }
 .lb-prev { left: 14px; top: 50%; transform: translateY(-50%); }
 .lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
@@ -889,7 +898,7 @@ blockquote.quote-group { margin: 0 auto; padding: 0; border: 0; }
 }
 
 /* buttons: slight lift on hover */
-.btn { transition: background .2s ease, color .2s ease, transform .2s var(--anim-ease), box-shadow .2s ease; }
+.btn { transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s var(--anim-ease), box-shadow .2s ease; }
 .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, .12); }
 
 /* inputs: smooth focus already styled; add soft border transition */

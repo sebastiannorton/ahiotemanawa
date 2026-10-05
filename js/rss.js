@@ -60,6 +60,7 @@
     card.appendChild(text);
 
     var link = document.createElement("a");
+    link.className = "btn";   /* filled button (site-wide solid button style) */
     link.href = item.href || feedUrl;
     link.target = "_blank";
     link.rel = "noopener";
