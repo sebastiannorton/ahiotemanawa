@@ -693,7 +693,10 @@ blockquote.quote-group { margin: 0 auto; padding: 0; border: 0; }
 }
 
 /* ---------- Contact page ---------- */
-.map-section { padding: 1.5rem 1.25rem 3rem; }
+/* Map sits below the contact details/form; the .contact-grid above already
+   contributes 2.5rem bottom padding, so this top padding tops the gap up to
+   a section-level rhythm (~5rem) without feeling cramped. */
+.map-section { padding: 2.5rem 1.25rem 3rem; }
 .map-wrap {
   width: 100%;
   height: clamp(380px, 62vh, 672px);
