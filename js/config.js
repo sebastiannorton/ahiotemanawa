@@ -1,0 +1,110 @@
+/* ============================================================
+   Shared site configuration — editable by the client.
+   All client-changeable values live here in ONE place so they
+   are easy to find and update. See README.md for instructions.
+   ============================================================ */
+"use strict";
+
+const SITE_CONFIG = {
+  /* Title of the site (used by the header logo lockup fallback). */
+  siteName: "Ahi o te Manawa",
+  tagline: "Connecting hearts to Gaia",
+
+  /* ---------- Events (Google Sheet CSV) ---------- */
+  /* Published sheet: File > Share > Publish to web > CSV.
+     Columns: active, title, start_date, start_time, end_date, end_time,
+     is_recurring, recurrence_note, location, type, description,
+     image_url, register_url, organiser, notes_internal. */
+  EVENTS_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRv6918bWuAyBCRYPf5mXt2UoUE4sLASpYCYTy1YiXyNsWnazraA6KP4NDPRtd4kKzrHf2W_fu3tqIh/pub?gid=477270608&single=true&output=csv",
+
+  /* ---------- RSS feed (Notes from the Land card stack) ---------- */
+  /* Paste the feed URL of the Ahi o te Manawa Substack here once it
+     is created. Currently pointing at the existing Jay Bennett feed. */
+  RSS_FEED_URL: "https://jaybennett.substack.com/feed",
+
+  /* ---------- Galleries (public/images/gallery/) ----------
+     Three clickable galleries: Whare (the house), Whenua (the land),
+     Tangata (the people). Each `images` entry is an exact filename
+     inside public/images/gallery/<folder>/. Clicking a thumbnail
+     opens the full-size pop-up gallery (carousel) for that section. */
+  GALLERY_SECTIONS: [
+    {
+      key: "whare",
+      title: "whare",
+      subtitle: "the house",
+      folder: "whare",
+      altPrefix: "Whare — inside the house at Ahi o te Manawa",
+      images: [
+        "IMG_0959.jpeg", "IMG_0961.jpeg", "IMG_0963.jpeg", "IMG_1663.JPG",
+        "IMG_1674.JPG", "IMG_1700.JPG", "IMG_1867.JPG", "IMG_1869.JPG",
+        "IMG_1872.JPG", "IMG_1873.JPG", "IMG_1874.JPG", "IMG_1875.JPG",
+        "IMG_1876.JPG", "IMG_1877.JPG", "IMG_2683.JPG", "IMG_4584.JPG",
+        "IMG_7755.jpeg", "IMG_9511.JPG", "IMG_9512.JPG", "IMG_9821.JPG",
+        "IMG_9838.JPG", "IMG_9840.JPG", "IMG_9841.JPG", "IMG_9842.JPG",
+        "IMG_9905.JPG", "JAY01744.jpeg", "JAY01745.jpeg", "bedroom 2.JPG",
+        "bedroom1.JPG", "coal raneg.JPG", "heart ladder.JPG",
+        "kitchen1.JPG", "kitchen2.JPG", "kitchen3.JPG"
+      ]
+    },
+    {
+      key: "whenua",
+      title: "whenua",
+      subtitle: "the land",
+      folder: "whenua",
+      altPrefix: "Whenua — the land at Ahi o te Manawa",
+      images: [
+        "IMG_1671.JPG", "IMG_4233.JPG", "IMG_4257.JPG", "IMG_4492.JPG",
+        "IMG_5619.jpg", "IMG_5655.JPG", "IMG_7134.JPG", "IMG_7452.JPG",
+        "IMG_9513.JPG", "IMG_9635.JPG", "JAY01708.jpeg", "JAY01738.jpeg",
+        "JAY01758.jpeg", "JAY01948.jpeg", "JAY01950.jpeg", "JAY01973.jpeg",
+        "JAY01988.jpeg", "JAY02005.jpeg", "candle for a friend.jpeg",
+        "front yard.jpeg", "icey roof.JPG", "kenna.JPG", "lemons.JPG",
+        "steam.jpeg"
+      ]
+    },
+    {
+      key: "tangata",
+      title: "tangata",
+      subtitle: "the people",
+      folder: "tangata",
+      altPrefix: "Tangata — the people of Ahi o te Manawa",
+      images: [
+        "20251023_182731.jpg", "20251025_173748.jpg", "IMG_1666.JPG",
+        "IMG_1668.JPG", "IMG_1669.JPG", "IMG_1675.JPG", "IMG_1684.JPG",
+        "IMG_1696.JPG", "IMG_2577.jpeg", "IMG_2579.jpeg", "IMG_7707.jpeg",
+        "IMG_7738.jpeg", "IMG_7750.jpeg", "IMG_9760.jpg", "IMG_9775.JPG",
+        "IMG_9776.JPG", "IMG_9816.JPG", "JAY01640.jpeg", "JAY01645.jpeg",
+        "JAY01648.jpeg", "JAY01649.jpeg", "JAY01650.jpeg", "JAY01651.jpeg",
+        "JAY01652.jpeg", "JAY01675.jpeg", "JAY01750.jpeg", "James carving.jpg",
+        "Tristan carving.jpg", "Wojciech carving.jpg", "builders.jpg",
+        "carving floor.jpg", "cloaked mages.jpeg",
+        "jay and sebastian wih beads.jpg", "ladderrungs _ lukas.JPG",
+        "ladderrungs.JPG", "men in carving.jpg", "men with builders mix.jpg",
+        "musos at heart.jpg", "puma cov er.jpg", "togethering celebration .jpeg",
+        "togethering dinner.jpg", "two puia baskets.jpg"
+      ]
+    }
+  ],
+
+  /* ---------- Contact details / form ---------- */
+  /* Physical location for the "find us" block and the embedded map. */
+  addressLines: [
+    "789 State Highway 41",
+    "RD1",
+    "Tokaanu 3381",
+    "New Zealand"
+  ],
+  contactEmail: "hello@ahiotemanawa.example", /* TODO: real email */
+  /* Publicly shared Google Maps embed src (no API key required).
+     !5e1 = satellite view (change to !5e0 for the road map). */
+  mapsEmbedSrc:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d946.6742514430535!2d175.74218844800777!3d-38.95782110331699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d6ba3193abe25b9%3A0x74c49df576535272!2s789%20State%20Highway%2041%2C%20Tokaanu%203381!5e1!3m2!1sen!2snz!4v1790892032944!5m2!1sen!2snz",
+  /* Form backend endpoint (e.g. Formspree) used by the contact form.
+     TODO: sign up at formspree.io and paste your form endpoint here. */
+  FORM_ENDPOINT: "https://formspree.io/f/PLACEHOLDER_REPLACE_ME"
+};
+
+/* Export for use in other scripts. */
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = SITE_CONFIG;
+}

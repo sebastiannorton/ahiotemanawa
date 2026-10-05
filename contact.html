@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahi o te Manawa — Contact</title>
+  <meta name="description" content="Get in touch with Ahi o te Manawa — email us, find the land on the map, or send a note through the contact form.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=17">
+  <link rel="icon" type="image/png" href="public/images/favicon.png">
+</head>
+<body>
+
+  <!-- ======================= SHARED HEADER (bar) =============================== -->
+  <header class="site-header site-header--bar">
+    <div class="header-inner">
+      <a class="logo-box" href="index.html" aria-label="Ahi o te Manawa home">
+        <!-- TODO: replace with logo-ahiotemanawa.png (ASSET-MANIFEST LOGO_01) when supplied -->
+        <img class="logo-icon" src="public/images/logo-ahiotemanawa.svg" alt="Ahi o te Manawa koru logo">
+        <span class="logo-text">
+          <span class="logo-wordmark">Ahi o te Manawa</span>
+          <span class="logo-tagline">Connecting hearts to Gaia</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="main-nav">
+        <a href="index.html">home</a>
+        <a href="purpose.html">purpose</a>
+        <a href="events.html">events</a>
+        <a href="contact.html" class="active" aria-current="page">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================= CONTACT CONTENT ================================== -->
+  <div class="section container">
+    <h1>Contact</h1>
+  </div>
+
+  <!-- Embedded Google Map window (large, satellite — set in js/config.js) -->
+  <div class="map-section container">
+    <div class="map-wrap" id="map-wrap">
+      <iframe id="map-frame" title="Map to Ahi o te Manawa" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="map-todo" id="map-todo" hidden>
+        Map coming soon — add the embed URL in js/config.js (SITE_CONFIG.mapsEmbedSrc).
+      </div>
+    </div>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=789+State+Highway+41,+Tokaanu+3381,+New+Zealand" target="_blank" rel="noopener">open in Google Maps</a>
+  </div>
+
+  <!-- Details (left) + email form (right) — values from SITE_CONFIG in
+       js/contact.js; edit in js/config.js. -->
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>email</h3>
+      <p><a id="contact-email" href="mailto:PLACEHOLDER_REPLACE_ME">PLACEHOLDER_REPLACE_ME</a></p>
+      <h3>find us</h3>
+      <p id="contact-address"></p>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-msg" id="form-msg" hidden></div>
+      <form id="contact-form" action="#" method="post" novalidate>
+        <div class="form-row">
+          <p>
+            <label for="cf-name">Your name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </p>
+          <p>
+            <label for="cf-email">Your email</label>
+            <input type="email" id="cf-email" name="_replyto" autocomplete="email" required>
+          </p>
+        </div>
+        <p>
+          <label for="cf-message">Your message</label>
+          <textarea id="cf-message" name="message" rows="9" required></textarea>
+        </p>
+        <p class="form-note">We'll read every message and reply as soon as we can.</p>
+        <p>
+          <button class="btn" type="submit">send message</button>
+        </p>
+      </form>
+      <noscript>
+        <p class="form-note">Please enable JavaScript to send a message, or email us directly at the address above.</p>
+      </noscript>
+    </div>
+  </div>
+
+  <!-- ======================= SHARED FOOTER ==================================== -->
+  <footer class="site-footer">
+    <!-- Placeholder footer — update copyright year, add contact details/social links when supplied -->
+    <img class="footer-logo" src="public/images/footer-logo.png" alt="" width="66" height="66" loading="lazy">
+    <p class="footer-sitename">Ahi o te Manawa</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">home</a>
+      <a href="purpose.html">purpose</a>
+      <a href="events.html">events</a>
+      <a href="contact.html">contact</a>
+    </nav>
+    <p class="footer-copyright">&copy; 2026 Ahi o te Manawa. All rights reserved.</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/images.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/anim.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

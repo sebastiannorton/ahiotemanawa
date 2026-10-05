@@ -1,0 +1,70 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Use the Markdown files in this project as the complete translation of the\
+client's Canva design.\
+\
+The source-of-truth order is:\
+\
+1. DESIGN-ANALYSIS.md\
+2. CONTENT-MAP.md\
+3. ASSET-MANIFEST.md\
+4. IMPLEMENTATION-PROMPT.md\
+5. Existing project conventions\
+\
+Do not analyse images or PDFs. Do not invent content unless specifically asked to. Do not use remote\
+placeholder images. Use the exact local filenames in ASSET-MANIFEST.md.\
+\
+In addition to what is present in this analysis, is that I want a full size gallery showing before the Kaitiaki: Guardians section. The images for the Gallery will be in public/images/gallery.\
+\
+I want the contact page to contain a simple and clean email contact form, matching the style and tone of the rest of the website content. Underneath the Kaitiaki/Guardians section, I want an elegant RSS card stck with previews of articles that will be linked to the RSS feed of a substack yet to be created detailing updates of the land. You can generate a short title/subtitle for this.\
+\
+On the contact page, I want space for an email address, physical address, and an embedded google map window to view the location. \
+\
+For the events page, I want the past events content to be below a series of event cards titled "Upcoming Spaces at Ahi O Te Manawa" that display cards using the following prompt: "Build an external event system using a publicly published Google Sheet.\
+\
+The Google Sheet contains these columns:\
+\
+- published\
+- date\
+- end_date\
+- time\
+- title\
+- description\
+- location\
+- image\
+- booking_url\
+- category\
+\
+Create a configurable constant called EVENTS_CSV_URL. Do not hard-code the\
+URL in multiple components.\
+\
+On page load:\
+\
+1. Fetch the published CSV URL.\
+2. Parse the CSV safely, including commas inside quoted values.\
+3. Convert each row into an event object.\
+4. Keep only rows where published is TRUE, true, yes or 1.\
+5. Hide events whose date is earlier than today, unless an\
+   SHOW_PAST_EVENTS setting is enabled.\
+6. Sort upcoming events chronologically.\
+7. Render each event as a reusable EventCard component.\
+8. Render a useful empty state if there are no upcoming events.\
+9. Render a clear error state if the spreadsheet cannot be loaded.\
+10. Make booking_url optional. If it is empty, do not show a booking button.\
+11. Make image optional. If it is empty, use the designed fallback treatment.\
+12. Escape or safely render user-entered text.\
+13. Make the cards responsive and accessible.\
+\
+Use the local images in public/images/ when the image field contains a local\
+filename. Do not use remote placeholder images.\
+\
+Add a README section explaining exactly how the client adds, edits,\
+publishes and hides an event."\
+\
+Build the site in small, reviewable stages. Before each stage, explain what\
+you are changing and identify any assumption that could affect the client's intended design.}

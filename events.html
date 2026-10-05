@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahi o te Manawa — Events</title>
+  <meta name="description" content="Upcoming spaces at Ahi o te Manawa, and records of past gatherings — Momentum, Gaian Mens Bridge House and Togethering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="icon" type="image/png" href="public/images/favicon.png">
+</head>
+<body>
+
+  <!-- ======================= SHARED HEADER (bar) =============================== -->
+  <header class="site-header site-header--bar">
+    <div class="header-inner">
+      <a class="logo-box" href="index.html" aria-label="Ahi o te Manawa home">
+        <!-- TODO: replace with logo-ahiotemanawa.png (ASSET-MANIFEST LOGO_01) when supplied -->
+        <img class="logo-icon" src="public/images/logo-ahiotemanawa.svg" alt="Ahi o te Manawa koru logo">
+        <span class="logo-text">
+          <span class="logo-wordmark">Ahi o te Manawa</span>
+          <span class="logo-tagline">Connecting hearts to Gaia</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="main-nav">
+        <a href="index.html">home</a>
+        <a href="purpose.html">purpose</a>
+        <a href="events.html" class="active" aria-current="page">events</a>
+        <a href="contact.html">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================= UPCOMING SPACES (client addition) ================ -->
+  <!-- Event cards load live from a published Google Sheet CSV. Manage the
+       sheet at SITE_CONFIG.EVENTS_CSV_URL in js/config.js. See README.md. -->
+  <div class="section container" style="padding-bottom: .5rem;">
+    <h1>Spaces at Ahi o te Manawa</h1>
+  </div>
+
+  <!-- Three time groups, populated by js/events.js from the sheet -->
+  <section class="events-group">
+    <div class="container">
+      <h2>Upcoming Spaces</h2>
+      <div class="event-grid" id="event-grid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="events-group" id="events-inprogress" hidden>
+    <div class="container">
+      <h2>In Progress</h2>
+      <div class="event-grid" id="inprogress-event-grid"></div>
+    </div>
+  </section>
+
+  <section class="events-group" id="events-past" hidden>
+    <div class="container">
+      <h2>Past Spaces</h2>
+      <div class="event-grid" id="past-event-grid"></div>
+    </div>
+  </section>
+
+  <!-- ======================= PAST EVENTS ===================================== -->
+  <div class="section container">
+    <h2>Past Events</h2>
+<!-- --------------------- Momentum ------------------------------ -->
+  <section class="past-event">
+    <div class="container">
+      <h2>Momentum</h2>
+
+      <div class="photo-row">
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-momentum-group-dog-01.jpeg"
+               alt="Group of people with a dog, embracing during the Momentum gathering">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-momentum-trail-umbrella-02.jpg"
+               alt="Three people walking a trail during the Momentum gathering">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-momentum-stream-feet-03.jpeg"
+               alt="People wading through a stream during the Momentum gathering">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-momentum-gardening-04.jpeg"
+               alt="Two people gardening outdoors with a dog nearby">
+        </div>
+      </div>
+
+      <p>Momentum was a one week alive gathering of Possibilitators on a Year Long space holder training who came together for an in person training.</p>
+      <p>Practicing delivering maps and being with resistances, fears and skills to be better space holders for delivering Possibility Management derived distinctions and thoughtware to communities and workshops.</p>
+
+      <div class="two-col two-col--wide-quote">
+        <div class="media momentum-pair">
+          <div class="asset" style="aspect-ratio: 3 / 4;">
+            <img class="site-image" src="public/images/events/events-momentum-whiteboard-welcome.jpg"
+                 alt="Whiteboard with hand-drawn 'Welcome Momentum' writing">
+          </div>
+          <div class="asset" style="aspect-ratio: 3 / 4;">
+            <img class="site-image" src="public/images/events/events-momentum-flipchart-writing.jpg"
+                 alt="A person writing on a flip-chart during a training session">
+          </div>
+        </div>
+        <blockquote class="quote-group text">
+          <p class="testimonial">My most recent legend from the land is an experience of collaboration.</p>
+          <p class="testimonial">Seven people gathered there to explore their Spaceholder skills, and I was sharing meals with them. During the first lunch, things were a bit clumsy, and people were bumping into each other.</p>
+          <p class="testimonial">By the second lunch, I could see a shift happening.</p>
+          <p class="testimonial">I could see how they were synchronizing and collaborating. They would ask for the food they wanted to be passed to them, and this asking became like a song. Each person was sensitive enough to know when to ask in a way that created connection rather than disturbance.</p>
+          <p class="testimonial">Hands moved around the table, passing food in a kind of dance. It was a pleasure to be part of that dance.</p>
+          <p class="testimonial-name">— Martin Salanda</p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- --------------------- Gaian Mens Bridge House ------------------ -->
+  <section class="past-event">
+    <div class="container">
+      <h2>Gaian Mens Bridge House</h2>
+
+      <div class="photo-row">
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-gmbh-group-hats-01.JPG"
+               alt="Four men wearing hats, group photo from the Gaian Mens Bridge House event">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-gmbh-portrait-mud-02.JPG"
+               alt="Close-up portrait of a man with mud on his face, smiling">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-gmbh-garden-build-03.JPG"
+               alt="A man building a garden structure in the bush">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-gmbh-table-flowers-04.jpg"
+               alt="Table setting with white flowers and a lit candle">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-gmbh-hike-mountain-05.jpg"
+               alt="Group of men hiking on a mountain landscape">
+        </div>
+      </div>
+
+      <p>for 7 weeks a few Men lived at Ahi o te Manawa and researched how it goes for Men to live together in a way that was intimate with the land and each other (and for clarity it had nothing to do with sexuality); it was about connecting with our hearts and creating intimacy &amp; curiosity of how it goes to be in the moment to moment of life with our conscious feelings and heart felt connections.</p>
+
+      <blockquote class="quote-group event-stack">
+        <p class="testimonial">I came all the way from Canada and landed on this land for a project called &ldquo;Gaian Mens Bridge House&rdquo; with my personal quest to be more turned on and on fire in my own life, and to explore Being with, collaboration and vulnerability amongst other men, and reconnection with nature.</p>
+        <p class="testimonial">How to be more fulfilled and nourished is what I learned and experienced here.</p>
+        <p class="testimonial">I feel joy thinking back of the many intimate sharings of my feelings with my fellow brothers there, breaking the scarcity of being vulnerable with other men.</p>
+        <p class="testimonial">The land itself is beautifully raw. From the third day on of this 6 weeks endeavour I slept outside (starting in a tent, and later on in a self-built survival shelter in the woods).</p>
+        <p class="testimonial">I experienced many magical and weird (in a positive way) moments, from healing an almost dying dog, walking backwards off a mountain, inventing a medicinal and delicious icecream from kawakawa. Forever grateful for this experience.</p>
+        <p class="testimonial-name">— Leonhard Geupel</p>
+      </blockquote>
+
+      <blockquote class="quote-group event-stack">
+        <p class="testimonial">Being on the land feels like magic. Surrounded by native forest, I experience a sense of protection, while the views over the lake offered me a space to dream.</p>
+        <p class="testimonial">I love sitting on the porch in the mornings with a cup of coffee, looking out over the landscape while sorting through my feelings and becoming centered. It is a delicious way to begin the day.</p>
+        <p class="testimonial">My time at Ahi o te Manawa has been connected with transformation and collaboration.</p>
+        <p class="testimonial">It was a perfect place for such an experiment, with other men living there alongside me.</p>
+        <p class="testimonial-name">— Martin Salanda</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- --------------------- Togethering ------------------------------ -->
+  <section class="past-event">
+    <div class="container">
+      <h2>Togethering</h2>
+
+      <div class="photo-row">
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-togethering-deck-group-01.jpg"
+               alt="Wooden deck with a group of people gathered, string lights visible">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-togethering-bw-van-02.jpeg"
+               alt="Black-and-white photo of two men near a van">
+        </div>
+        <div class="asset" style="aspect-ratio: 4 / 3;">
+          <img class="site-image" src="public/images/events/events-togethering-table-indoor-03.jpg"
+               alt="Group of men gathered around a table indoors">
+        </div>
+      </div>
+
+      <p>For 1 week a group of Men came together to be with each other. These Men have been together over a 2 year period in some major transformational spaces including 2 &ldquo;Labs for Men&rdquo; - 5 day intense workshops based in Possibility Management where we looked deeply into Patriarchy and how we as Men are showing up in the world and how we want to show up - discovering the void that is the difference between these two places.</p>
+      <p>In the second Lab we started with a question from Woman.........&ldquo;Where are the Men?&rdquo;</p>
+      <p>This week was a different space where we really got to enjoy being with each other with our feelings, hearts and the abundance of life.</p>
+      <p class="testimonial">One of the Men Tristan Girdwood
+        <a href="https://jaybennett.substack.com/p/stories-of-the-mens-bridgehouse" target="_blank" rel="noopener">wrote this article about it.</a></p>
+
+      <div class="two-col">
+        <blockquote class="quote-group text">
+          <p class="testimonial">Ahi o te Manawa<br>
+            A place to rest your soul<br>
+            Companions you will find here<br>
+            For a path without a goal</p>
+          <p class="testimonial">A Man named Jay<br>
+            In Taupo Bay<br>
+            is known both far and wide.</p>
+          <p class="testimonial">He offers here<br>
+            his heart and hearth<br>
+            and takes in Love his pride.</p>
+          <p class="testimonial">I stayed a day, I stayed a week,<br>
+            it tore my heart to leave.<br>
+            Yet in this place, and with this Man,<br>
+            I was in safe hands to grieve.</p>
+          <p class="testimonial">If ever you get called to<br>
+            Sacredness and Kawa<br>
+            I urge you to go visit<br>
+            Ahi o te Manawa.</p>
+          <p class="testimonial-name">— Benjamin Pollitt</p>
+        </blockquote>
+        <div class="text">
+          <p>over the past few years a number of spaces of transformation and evolution have been taking place here.</p>
+          <p><strong>An archan research centre</strong><br>
+            <a href="https://ahiotemanawa.mystrikingly.com/" target="_blank" rel="noopener">https://ahiotemanawa.mystrikingly.com/</a></p>
+          <p><strong>a Mens &ldquo;togethering&rdquo; bridgehouse</strong><br>
+            <a href="https://jaybennett.substack.com/p/stories-of-the-mens-bridgehouse?r=2hmo35" target="_blank" rel="noopener">https://jaybennett.substack.com/p/stories-of-the-mens-bridgehouse?r=2hmo35</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= SHARED FOOTER ==================================== -->
+  <footer class="site-footer">
+    <!-- Placeholder footer — update copyright year, add contact details/social links when supplied -->
+    <img class="footer-logo" src="public/images/footer-logo.png" alt="" width="66" height="66" loading="lazy">
+    <p class="footer-sitename">Ahi o te Manawa</p>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">home</a>
+      <a href="purpose.html">purpose</a>
+      <a href="events.html">events</a>
+      <a href="contact.html">contact</a>
+    </nav>
+    <p class="footer-copyright">&copy; 2026 Ahi o te Manawa. All rights reserved.</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/images.js"></script>
+  <script src="js/events.js?v=7"></script>
+  <script src="js/anim.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

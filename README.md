@@ -1,0 +1,206 @@
+# Ahi o te Manawa — Website
+
+A four-page static site built from the specification documents in this folder
+(`DESIGN-ANALYSIS.md`, `CONTENT-MAP.md`, `ASSET-MANIFEST.md`,
+`IMPLEMENTATION-PROMPT.md`). It has **no build step** — open any `.html` page
+directly or serve the folder with a simple static server.
+
+**Pages (nav order):** `home` · `purpose` · `events` · `contact`
+
+```
+index.html      – Home (hero, statement, photo strip, gallery, Kaitiaki guardians, Notes from the Land)
+purpose.html    – Purpose (regenerative culture, opportunities, WWOOFing)
+events.html     – Events (Upcoming Spaces + Past Events)
+contact.html    – Contact (email, address, map, form)
+css/styles.css  – shared design system (colours/type/layout)
+js/config.js    – ★ every client-editable value lives here
+js/*.js         – behaviour (menu, images, gallery, rss, events, contact)
+public/images/  – photo files (see "Photos" below)
+```
+
+---
+
+## 1) Upcoming Spaces — the Google Sheet events system
+
+The "Upcoming Spaces at Ahi o te Manawa" cards are loaded automatically from a
+**public Google Sheet** published as a CSV.
+
+### One-time setup (one minute)
+
+1. Open your Google Sheet with the columns below.
+2. **File → Share → Publish to web →** choose the sheet → **Whole sheet** →
+   **Comma-separated values (.csv)** → **Publish**.
+3. Copy the published URL (ends in `/export?format=csv&id=...`).
+4. Open `js/config.js` and paste it into:
+
+   ```js
+   EVENTS_CSV_URL: "https://docs.google.com/spreadsheets/d/e/.../export?format=csv&id=...gid=0"
+   ```
+
+### The columns
+
+| Column | What it means |
+|---|---|
+| `active` | `yes` (or `true` / `1`) shows the event. Anything else hides it. |
+| `title` | Event name. |
+| `start_date` | Start date, e.g. `2026-03-14` or `14/03/2026`. |
+| `start_time` | Optional time / time range. |
+| `end_date` | End date. **Recurring events stay visible until this date has passed** (or `active` = no). |
+| `end_time` | Optional end time. |
+| `is_recurring` | `yes` = the space carries a "recurring" badge, shows times only, and stays under "In Progress" even after its start date (until `active` = no or `end_date` elapses). |
+| `recurrence_note` | Optional note shown on the card, e.g. `every full moon at the outdoor fire`. |
+| `location` | Where it happens. |
+| `type` | Optional small label shown on the card. |
+| `description` | A short description (plain text; commas are fine inside quotes). |
+| `image_url` | Optional. A full `https://` URL is preferred; a bare filename resolves against `public/images/`. Empty → a designed fallback panel. |
+| `register_url` | Optional link. If present a "register your interest" button appears; if empty, no button. |
+| `organiser` | Optional — shown as "held by …". |
+| `notes_internal` | Internal only — never displayed on the site. |
+
+### How the page behaves
+
+Events are divided into three time groups on the page:
+
+- **Upcoming Spaces** — `start_date` is today or in the future, sorted by start date.
+- **In Progress** — `start_date` has passed but `end_date` is today or in the future. **Recurring spaces with no end date live here permanently** (they only move on when `active` = no, or an `end_date` is added and passes).
+- **Past Spaces** — start and end have both elapsed. Only the **last 3** (most recently ended) are shown.
+
+Other behaviour:
+
+- **Recurring spaces** carry a small `↻ recurring` badge on the card.
+- **Date display:** single-day spaces show `Thu, 15 Oct 2026 · 12:00 to 17:30`; multiday spaces show `Sat, 15 Aug 2026 · 12:00 to Thu, 8 Oct 2026 · 17:30`; recurring spaces show **times only** (`12:00 to 17:30`) — the sheet's `recurrence_note` tells users the day and frequency.
+- **Empty:** if nothing is upcoming, a centred friendly message shows.
+- **Error:** if the sheet can't be loaded, a clear error message shows.
+
+### How to add / edit / publish / hide an event
+
+- **Add:** insert a new row below the header row and fill in the columns.
+- **Edit:** change the row's cells; the site reflects it on the next page load.
+- **Publish:** set `active` to `yes`. Until you do, the event stays hidden.
+- **Hide / retire:** set `active` to `no` (or empty). For a recurring event you can also let its `end_date` pass.
+- **Past Spaces:** once start and end dates have both passed, the space moves to "Past Spaces" (last 3 shown). Recurring spaces with no end date instead stay under "In Progress".
+
+> **Anything can break the card loading:** rows edited by hand, a missing sheet
+> permission, or a changed column name. Keep the header row exactly as above.
+
+---
+
+## 2) Galleries (Home page) — Whare / Whenua / Tangata
+
+Three clickable galleries sit before the "Kaitiaki : Guardians" section.
+Thumbnails are a uniform square grid; clicking any photo opens a **full-size
+pop-up carousel** for that section (on-screen arrows or ← → keys to move,
+Esc to close).
+
+- **Photo files** live in `public/images/gallery/whare/`, `…/whenua/` and
+  `…/tangata/`.
+- **Which photos appear, and in what order,** is listed in `js/config.js`
+  under `GALLERY_SECTIONS` — each section has `title`, `subtitle`, `folder`
+  and an `images` array of exact filenames:
+
+  ```js
+  GALLERY_SECTIONS: [
+    {
+      key: "whare", title: "whare", subtitle: "the house",
+      folder: "whare",
+      altPrefix: "Whare — inside the house at Ahi o te Manawa",
+      images: [ "IMG_0959.jpeg", "bedroom1.JPG" /* … */ ]
+    }
+    /* … whenua, tangata … */
+  ]
+  ```
+
+- **Add a photo:** drop the file into the matching folder, then add its exact
+  filename to that section's `images` list.
+- **Reorder or hide photos:** reorder or remove entries in the `images` list.
+- Filenames with spaces are fine — they must match exactly, including case.
+
+### Web-sized copies (important)
+
+The original photos are very large (100–500+ MB total), so the site loads
+**optimised copies** generated by a helper script (macOS only, uses the
+built-in `sips` tool):
+
+```bash
+bash scripts/optimize-images.sh
+```
+
+This creates `public/images/gallery-web/<folder>/thumbs/` (max 640px, used in
+the scrolling strips) and `…/full/` (max 2000px, used in the full-screen
+overlay), and regenerates `js/gallery-manifest.js`.
+
+**Whenever you add photos to `public/images/gallery/<folder>/`, run the script
+again** — new photos then appear in the strips automatically. Your originals
+are never modified.
+
+---
+
+## 3) Notes from the Land — RSS card stack
+
+Cards beneath the Kaitiaki/Guardians section preview recent posts from the
+**Substack RSS feed** (up to 3).
+
+- When the new Ahi o te Manawa Substack exists, paste its feed URL (usually
+  `https://YOURNAME.substack.com/feed`) into `RSS_FEED_URL` in `js/config.js`.
+- The preview cards shown in the meantime are placeholders. Browsers may block
+  the cross-site feed (CORS); if cards don't populate, the feed origin must
+---
+
+## 4) Contact page — email, address, map, form
+
+Everything is set from `js/config.js`:
+
+- `contactEmail` — the address shown and emailed.
+- `addressLines` — the physical address shown.
+- `mapsEmbedSrc` — the **Google Maps embed URL** for the location. Get it on
+  Google Maps: **Share → Embed a map → copy the
+  `src="https://www.google.com/maps/embed?pb=..."` URL** and paste it here.
+- `FORM_ENDPOINT` — where the form posts. For a simple no-backend option:
+  1. Create a free form at **formspree.io**.
+  2. Copy the endpoint (e.g. `https://formspree.io/f/abcxyz`) and paste it here.
+
+Until each value is real, the page shows a friendly placeholder with a
+`TODO:` marker.
+
+---
+
+## 5) Photos — what is showing now?
+
+The design calls for **21 content images** (see `ASSET-MANIFEST.md`). Until the
+real photo files are placed in `public/images/` at their exact manifest
+filenames, the site automatically shows a **plain grey placeholder box** at the
+correct size. Drop the files in with the right names (e.g.
+`home-hero-lake-taupo.jpg`, `guardian-jay-bennett.jpg`) and they appear.
+Everything else is untouched.
+
+Placeholder `TODO:` notes remain in code for: the real logo
+(`logo-ahiotemanawa.png`), Jay Bennett's personal URL, and the incomplete
+"Land Goal" sentence (flagged in `CONTENT-MAP.md`).
+
+---
+
+## 6) Edit text / style
+
+- **Text content:** each page's headings and paragraphs are edited directly in
+  the matching `.html` file. Content mirrors `CONTENT-MAP.md` exactly.
+- **Colours, fonts, spacing:** `css/styles.css`, at the top ("Design tokens").
+  Only the confirmed palette is used; do not add new accent colours without
+  the client's sign-off.
+- **Nav / footer links:** repeated on each page. The active page's nav item is
+  underlined in the Brand Green.
+
+---
+
+## 7) Run locally
+
+No install needed:
+
+```bash
+# from the project folder
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000 . (The Google Sheet CSV and RSS/map embeds
+fetch over the internet, so open via the server rather than a `file://` URL
+when testing those.)
+  allow CORS or be served through a small proxy (note left in `js/rss.js`).
