@@ -23,21 +23,21 @@
      created / until a CORS-friendly feed is available (TODO). */
   var PREVIEW_CARDS = [
     {
-      issue: "Letter from the land",
-      title: "Seasons turning on the volcanic rim",
-      text: "Regeneration, planting and the slow stories of the land as spring arrives at Ahi o te Manawa.",
+      issue: "letter from the land",
+      title: "seasons turning on the volcanic rim",
+      text: "regeneration, planting and the slow stories of the land as spring arrives at Ahi o te Manawa.",
       href: feedUrl
     },
     {
-      issue: "Letter from the land",
-      title: "Gathering at the fire circle",
-      text: "Reflections on circle, community and the practice of slowing down enough to hear the heart.",
+      issue: "letter from the land",
+      title: "gathering at the fire circle",
+      text: "reflections on circle, community and the practice of slowing down enough to hear the heart.",
       href: feedUrl
     },
     {
-      issue: "Letter from the land",
-      title: "The spaces we keep",
-      text: "A walk through the cabin, the workshop and the things that hold this place together.",
+      issue: "letter from the land",
+      title: "the spaces we keep",
+      text: "a walk through the cabin, the workshop and the things that hold this place together.",
       href: feedUrl
     }
   ];
@@ -52,7 +52,7 @@
     card.appendChild(issue);
 
     var title = document.createElement("h4");
-    title.textContent = item.title || "Untitled";
+    title.textContent = item.title || "untitled";
     card.appendChild(title);
 
     var text = document.createElement("p");
@@ -121,7 +121,7 @@
     items.slice(0, MAX_CARDS).forEach(function (it) {
       stack.appendChild(
         makeCard({
-          issue: it.issue || "Notes from the land",
+          issue: it.issue || "notes from the land",
           title: it.title,
           text: it.text,
           href: it.href
@@ -146,7 +146,7 @@
     return;
   }
 
-  setState("Loading the latest notes…");
+  setState("loading the latest notes…");
 
   fetch(feedUrl, { headers: { Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, */*" } })
     .then(function (res) {
@@ -161,6 +161,6 @@
       renderItems(items);
     })
     .catch(function () {
-      onError("The latest letters are taking a moment to arrive — enjoy these notes meantime.");
+      onError("the latest letters are taking a moment to arrive — enjoy these notes meantime.");
     });
 })();

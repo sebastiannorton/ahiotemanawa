@@ -256,7 +256,7 @@
     var url = resolveImage(e.imageUrl);
     if (url) {
       var img = document.createElement("img");
-      img.alt = (e.title || "Event") + " at Ahi o te Manawa";
+      img.alt = (e.title || "event") + " at Ahi o te Manawa";
       img.decoding = "async";
       /* remote images: don't send a referrer (imgur & friends are
          referer-sensitive) and never lazy-load the card hero */
@@ -294,7 +294,7 @@
 
     var title = document.createElement("h3");
     title.className = "event-title";
-    title.textContent = e.title || "Untitled";
+    title.textContent = e.title || "untitled";
     body.appendChild(title);
 
     var whenTxt = fmtWhen(e);
@@ -365,7 +365,7 @@
       var empty = document.createElement("p");
       empty.className = "event-state";
       empty.textContent =
-        "There are no upcoming spaces open just now \u2014 check back soon.";
+        "there are no upcoming spaces open just now \u2014 check back soon.";
       grid.appendChild(empty);
     } else {
       renderGrid("event-grid", groups.upcoming, false);
@@ -398,7 +398,7 @@
     p.className = "event-state";
     p.setAttribute("role", "alert");
     p.textContent =
-      "The event list could not be loaded right now. Please try again soon, or contact us directly.";
+      "the event list could not be loaded right now. Please try again soon, or contact us directly.";
     grid.appendChild(p);
   }
 
