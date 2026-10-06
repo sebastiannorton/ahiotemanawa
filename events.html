@@ -3,12 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahi o te Manawa — Events</title>
+  <title>Events &amp; Past Gatherings — Ahi o te Manawa</title>
   <meta name="description" content="Upcoming spaces at Ahi o te Manawa, and records of past gatherings — Momentum, Gaian Mens Bridge House and Togethering.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20">
+  <meta name="robots" content="index, follow">
+  <!-- TODO: replace www.ahiotemanawa.example with the production domain —
+       canonical/og:url here plus the same value in robots.txt and sitemap.xml. -->
+  <link rel="canonical" href="https://www.ahiotemanawa.example/events.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ahi o te Manawa">
+  <meta property="og:title" content="Events &amp; Past Gatherings — Ahi o te Manawa">
+  <meta property="og:description" content="Upcoming spaces at Ahi o te Manawa, and records of past gatherings — Momentum, Gaian Mens Bridge House and Togethering.">
+  <meta property="og:url" content="https://www.ahiotemanawa.example/events.html">
+  <meta property="og:image" content="https://www.ahiotemanawa.example/public/images/events/events-togethering-deck-group-01.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Events &amp; Past Gatherings — Ahi o te Manawa">
+  <meta name="twitter:description" content="Upcoming spaces at Ahi o te Manawa, and records of past gatherings — Momentum, Gaian Mens Bridge House and Togethering.">
+  <meta name="twitter:image" content="https://www.ahiotemanawa.example/public/images/events/events-togethering-deck-group-01.jpg">
+  <!-- Self-hosted Poppins — no render-blocking third-party font CSS -->
+  <link rel="preload" as="font" type="font/woff2" href="public/fonts/poppins-300-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="public/fonts/poppins-500-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.min.css?v=23">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 </head>
 <body>
@@ -16,7 +30,7 @@
   <!-- ======================= SHARED HEADER (bar) =============================== -->
   <header class="site-header site-header--bar">
     <div class="header-inner">
-      <a class="logo-box" href="index.html" aria-label="Ahi o te Manawa home">
+      <a class="logo-box" href="index.html">
         <!-- TODO: replace with logo-ahiotemanawa.png (ASSET-MANIFEST LOGO_01) when supplied -->
         <img class="logo-icon" src="public/images/logo-ahiotemanawa.svg" alt="Ahi o te Manawa koru logo">
         <span class="logo-text">
@@ -34,9 +48,12 @@
     </div>
   </header>
 
+  <main>
+
   <!-- ======================= UPCOMING SPACES (client addition) ================ -->
   <!-- Event cards load live from a published Google Sheet CSV. Manage the
-       sheet at SITE_CONFIG.EVENTS_CSV_URL in js/config.js. See README.md. -->
+       sheet URL via the CMS (/admin → Site settings) — it lives in
+       data/config.json as SITE_CONFIG.EVENTS_CSV_URL. See README.md. -->
   <div class="section container" style="padding-bottom: .5rem;">
     <h1>spaces at Ahi o te Manawa</h1>
   </div>
@@ -75,28 +92,28 @@
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-momentum-group-dog-01.webp">
-            <img class="site-image" src="public/images/events/events-momentum-group-dog-01.jpeg"
+            <img class="site-image" src="public/images/events/events-momentum-group-dog-01.jpeg" width="1600" height="1036"
                  alt="Group of people with a dog, embracing during the Momentum gathering" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-momentum-trail-umbrella-02.webp">
-            <img class="site-image" src="public/images/events/events-momentum-trail-umbrella-02.jpg"
+            <img class="site-image" src="public/images/events/events-momentum-trail-umbrella-02.jpg" width="1600" height="1066"
                  alt="Three people walking a trail during the Momentum gathering" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-momentum-stream-feet-03.webp">
-            <img class="site-image" src="public/images/events/events-momentum-stream-feet-03.jpeg"
+            <img class="site-image" src="public/images/events/events-momentum-stream-feet-03.jpeg" width="1600" height="1066"
                  alt="People wading through a stream during the Momentum gathering" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-momentum-gardening-04.webp">
-            <img class="site-image" src="public/images/events/events-momentum-gardening-04.jpeg"
+            <img class="site-image" src="public/images/events/events-momentum-gardening-04.jpeg" width="1600" height="1066"
                  alt="Two people gardening outdoors with a dog nearby" loading="lazy" decoding="async">
           </picture>
         </div>
@@ -110,14 +127,14 @@
           <div class="asset" style="aspect-ratio: 3 / 4;">
             <picture>
               <source type="image/webp" srcset="public/images/events/events-momentum-whiteboard-welcome.webp">
-              <img class="site-image" src="public/images/events/events-momentum-whiteboard-welcome.jpg"
+              <img class="site-image" src="public/images/events/events-momentum-whiteboard-welcome.jpg" width="1190" height="1600"
                    alt="Whiteboard with hand-drawn 'Welcome Momentum' writing" loading="lazy" decoding="async">
             </picture>
           </div>
           <div class="asset" style="aspect-ratio: 3 / 4;">
             <picture>
               <source type="image/webp" srcset="public/images/events/events-momentum-flipchart-writing.webp">
-              <img class="site-image" src="public/images/events/events-momentum-flipchart-writing.jpg"
+              <img class="site-image" src="public/images/events/events-momentum-flipchart-writing.jpg" width="1066" height="1600"
                    alt="A person writing on a flip-chart during a training session" loading="lazy" decoding="async">
             </picture>
           </div>
@@ -144,35 +161,35 @@
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-gmbh-group-hats-01.webp">
-            <img class="site-image" src="public/images/events/events-gmbh-group-hats-01.JPG"
+            <img class="site-image" src="public/images/events/events-gmbh-group-hats-01.JPG" width="1600" height="1199"
                  alt="Four men wearing hats, group photo from the Gaian Mens Bridge House event" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-gmbh-portrait-mud-02.webp">
-            <img class="site-image" src="public/images/events/events-gmbh-portrait-mud-02.JPG"
+            <img class="site-image" src="public/images/events/events-gmbh-portrait-mud-02.JPG" width="1199" height="1600"
                  alt="Close-up portrait of a man with mud on his face, smiling" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-gmbh-garden-build-03.webp">
-            <img class="site-image" src="public/images/events/events-gmbh-garden-build-03.JPG"
+            <img class="site-image" src="public/images/events/events-gmbh-garden-build-03.JPG" width="1199" height="1600"
                  alt="A man building a garden structure in the bush" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-gmbh-table-flowers-04.webp">
-            <img class="site-image" src="public/images/events/events-gmbh-table-flowers-04.jpg"
+            <img class="site-image" src="public/images/events/events-gmbh-table-flowers-04.jpg" width="1600" height="1200"
                  alt="Table setting with white flowers and a lit candle" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-gmbh-hike-mountain-05.webp">
-            <img class="site-image" src="public/images/events/events-gmbh-hike-mountain-05.jpg"
+            <img class="site-image" src="public/images/events/events-gmbh-hike-mountain-05.jpg" width="1600" height="1200"
                  alt="Group of men hiking on a mountain landscape" loading="lazy" decoding="async">
           </picture>
         </div>
@@ -208,21 +225,21 @@
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-togethering-deck-group-01.webp">
-            <img class="site-image" src="public/images/events/events-togethering-deck-group-01.jpg"
+            <img class="site-image" src="public/images/events/events-togethering-deck-group-01.jpg" width="1600" height="676"
                  alt="Wooden deck with a group of people gathered, string lights visible" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-togethering-bw-van-02.webp">
-            <img class="site-image" src="public/images/events/events-togethering-bw-van-02.jpeg"
+            <img class="site-image" src="public/images/events/events-togethering-bw-van-02.jpeg" width="1600" height="1199"
                  alt="Black-and-white photo of two men near a van" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="asset" style="aspect-ratio: 4 / 3;">
           <picture>
             <source type="image/webp" srcset="public/images/events/events-togethering-table-indoor-03.webp">
-            <img class="site-image" src="public/images/events/events-togethering-table-indoor-03.jpg"
+            <img class="site-image" src="public/images/events/events-togethering-table-indoor-03.jpg" width="1600" height="970"
                  alt="Group of men gathered around a table indoors" loading="lazy" decoding="async">
           </picture>
         </div>
@@ -279,12 +296,14 @@
       <a href="contact.html">contact</a>
     </nav>
     <p class="footer-copyright">&copy; 2026 Ahi o te Manawa. All rights reserved.</p>
+  </main>
+
   </footer>
 
-  <script src="js/config.js"></script>
-  <script src="js/images.js"></script>
-  <script src="js/events.js?v=7"></script>
-  <script src="js/anim.js"></script>
-  <script src="js/menu.js"></script>
+  <script src="js/config.min.js?v=24"></script>
+  <script src="js/images.min.js?v=23"></script>
+  <script src="js/events.min.js?v=23"></script>
+  <script src="js/anim.min.js?v=23"></script>
+  <script src="js/menu.min.js?v=23"></script>
 </body>
 </html>

@@ -8,14 +8,17 @@ directly or serve the folder with a simple static server.
 **Pages (nav order):** `home` · `purpose` · `events` · `contact`
 
 ```
-index.html      – Home (hero, statement, photo strip, gallery, Kaitiaki guardians, Notes from the Land)
-purpose.html    – Purpose (regenerative culture, opportunities, WWOOFing)
-events.html     – Events (Upcoming Spaces + Past Events)
-contact.html    – Contact (email, address, map, form)
-css/styles.css  – shared design system (colours/type/layout)
-js/config.js    – ★ every client-editable value lives here
-js/*.js         – behaviour (menu, images, gallery, rss, events, contact)
-public/images/  – photo files (see "Photos" below)
+index.html        – Home (hero, statement, photo strip, gallery, Kaitiaki guardians, Notes from the Land)
+purpose.html      – Purpose (regenerative culture, opportunities, WWOOFing)
+events.html       – Events (Upcoming Spaces + Past Events)
+contact.html      – Contact (email, address, map, form)
+admin/            – ★ browser Content Manager (Decap CMS) — see section 8
+data/config.json  – ★ every client-editable value lives here (edit via /admin)
+css/styles.css    – shared design system (colours/type/layout)
+js/config.js      – tiny loader that reads data/config.json into SITE_CONFIG
+js/*.js           – behaviour (menu, images, gallery, rss, events, contact)
+public/images/    – photo files (see "Photos" below)
+netlify.toml      – Netlify deploy settings (publish dir, /admin redirect)
 ```
 
 ---
@@ -31,10 +34,11 @@ The "Upcoming Spaces at Ahi o te Manawa" cards are loaded automatically from a
 2. **File → Share → Publish to web →** choose the sheet → **Whole sheet** →
    **Comma-separated values (.csv)** → **Publish**.
 3. Copy the published URL (ends in `/export?format=csv&id=...`).
-4. Open `js/config.js` and paste it into:
+4. Paste it into `EVENTS_CSV_URL` in `data/config.json` — easiest via the CMS
+   (`/admin` → **Site settings → Events Google Sheet CSV URL**):
 
-   ```js
-   EVENTS_CSV_URL: "https://docs.google.com/spreadsheets/d/e/.../export?format=csv&id=...gid=0"
+   ```json
+   "EVENTS_CSV_URL": "https://docs.google.com/spreadsheets/d/e/.../pub?...&output=csv"
    ```
 
 ### The columns
@@ -146,23 +150,33 @@ Cards beneath the Kaitiaki/Guardians section preview recent posts from the
 **Substack RSS feed** (up to 3).
 
 - When the new Ahi o te Manawa Substack exists, paste its feed URL (usually
-  `https://YOURNAME.substack.com/feed`) into `RSS_FEED_URL` in `js/config.js`.
+  `https://YOURNAME.substack.com/feed`) into `RSS_FEED_URL` — easiest in the
+  CMS (`/admin` → **Site settings**) or directly in `data/config.json`.
 - The preview cards shown in the meantime are placeholders. Browsers may block
   the cross-site feed (CORS); if cards don't populate, the feed origin must
+  allow CORS or be served through a small proxy (note left in `js/rss.js`).
 ---
 
 ## 4) Contact page — email, address, map, form
 
-Everything is set from `js/config.js`:
+Everything is set from `data/config.json` — edit it in the CMS
+(`/admin` → **Site settings**) rather than by hand:
 
-- `contactEmail` — the address shown and emailed.
+- `contactEmail` — the address shown and emailed (currently
+  `hello@ahiotemanawa.nz`).
 - `addressLines` — the physical address shown.
 - `mapsEmbedSrc` — the **Google Maps embed URL** for the location. Get it on
   Google Maps: **Share → Embed a map → copy the
   `src="https://www.google.com/maps/embed?pb=..."` URL** and paste it here.
 - `FORM_ENDPOINT` — where the form posts. For a simple no-backend option:
   1. Create a free form at **formspree.io**.
-  2. Copy the endpoint (e.g. `https://formspree.io/f/abcxyz`) and paste it here.
+  2. Copy the endpoint (e.g. `https://formspree.io/f/abcxyz`) and paste it in
+     the CMS (**Site settings → Contact form endpoint**).
+
+**EmailJS:** the plan is to move the contact form to EmailJS. When the EmailJS
+service keys are available, `js/contact.js` will be updated to send through
+EmailJS instead of posting to `FORM_ENDPOINT`. Until then the Formspree-style
+endpoint above is used.
 
 Until each value is real, the page shows a friendly placeholder with a
 `TODO:` marker.
@@ -186,8 +200,9 @@ Placeholder `TODO:` notes remain in code for: the real logo
 
 ## 6) Edit text / style
 
-- **Text content:** each page's headings and paragraphs are edited directly in
-  the matching `.html` file. Content mirrors `CONTENT-MAP.md` exactly.
+- **Text content:** edit in the CMS (`/admin` → **Pages**, pick a page and
+  edit its HTML in place) or directly in the matching `.html` file. Content
+  mirrors `CONTENT-MAP.md` exactly.
 - **Colours, fonts, spacing:** `css/styles.css`, at the top ("Design tokens").
   Only the confirmed palette is used; do not add new accent colours without
   the client's sign-off.
@@ -208,4 +223,109 @@ python3 -m http.server 8000
 Then open http://localhost:8000 . (The Google Sheet CSV and RSS/map embeds
 fetch over the internet, so open via the server rather than a `file://` URL
 when testing those.)
-  allow CORS or be served through a small proxy (note left in `js/rss.js`).
+
+The admin UI also loads at http://localhost:8000/admin/ , but logging in needs
+either the production Netlify Identity backend or the local proxy — see the
+"Local development" notes in section 8.
+
+---
+
+## 8) Content Manager — Decap CMS (`/admin`)
+
+The client edits the site through a browser UI at **`/admin`** (e.g.
+`https://YOUR-SITE.netlify.app/admin/`). It runs
+[Decap CMS](https://decapcms.org) (formerly Netlify CMS) straight from a CDN —
+there is still **no build step**. The CMS is configured in `admin/config.yml`.
+
+### What you can edit
+
+| Collection | Edits | Notes |
+|---|---|---|
+| **Site settings** | `data/config.json` | Site name, tagline, contact email, address lines, Google Maps embed URL, contact form endpoint, events sheet URL, RSS feed URL, gallery sections. |
+| **Pages** | `index.html`, `purpose.html`, `events.html`, `contact.html` | Each page opens as one editable HTML document. |
+| **Media** | `public/images/` | Images uploaded through the CMS land here. |
+
+The pages are plain static HTML, so the **Pages** collection maps each `.html`
+file to a single *Page HTML* field: Decap reads an HTML file that has no
+front-matter as one body value, and writes your edited text back verbatim on
+save. That keeps the deployed site byte-for-byte identical to what you saw in
+the editor — no templating step in between.
+
+### Day-to-day editing
+
+1. Open `/admin` and log in (email + password from the Netlify Identity
+   invite).
+2. Pick a collection:
+   - **Site settings → Site configuration** — plain fields. Change a value,
+     then press **Publish** (top right).
+   - **Pages** — pick a page and edit the HTML in the code editor. Change only
+     the visible content (text inside `<h1>/<h2>/<h3>`, `<p>`, `<li>`,
+     `alt="…"`, link `href="…"`); leave surrounding tags, `<script>` tags and
+     comments alone unless you are comfortable with HTML. Press **Publish**.
+3. **Every save is a Git commit** to `main` (e.g. "Update Pages · contact"),
+   and the commit triggers a Netlify deploy. The live site updates once the
+   deploy finishes — usually under a minute. Just refresh the page.
+
+**Images:** use the media library (or an image field) to upload; files are
+stored in `public/images/` and referenced as `/public/images/<filename>`.
+Existing photo filenames are governed by `ASSET-MANIFEST.md` — never rename
+them. New *gallery* photos additionally need `bash scripts/optimize-images.sh`
+run locally (section 2) to create their `.webp` copies and refresh the gallery
+manifest.
+
+### Logging in (Netlify Identity — one-time setup)
+
+1. In Netlify: **Site configuration → Identity → Enable Identity**, with
+   registration set to **Invite only**.
+2. Still under Identity: **Git gateway → Enable Git Gateway** (this generates
+   the access token the CMS uses to commit to GitHub).
+3. **Identity → Invite users** → invite the client's email address.
+4. The client accepts the invite email (sets a password), then logs in at
+   `/admin`.
+
+> If you later serve `/admin` from a domain other than the Netlify site URL,
+> add `base_url: https://YOUR-SITE.netlify.app` under `backend:` in
+> `admin/config.yml`.
+
+### Local development
+
+`admin/config.yml` normally talks to the production backend. To try the CMS
+locally: uncomment `local_backend: true` at the bottom of `admin/config.yml`,
+run `npx decap-server` alongside `python3 -m http.server 8000`, and open
+`http://localhost:8000/admin/` — saves then write to the local files. Keep
+`local_backend` commented out on production.
+
+---
+
+## 9) Deploying — GitHub → Netlify
+
+The repo is plain static files, so Netlify needs no build command
+(`netlify.toml` sets **publish directory = `.`** and a `/admin` redirect).
+
+### One-time setup
+
+1. **Create the GitHub repo** — github.com → *New repository* → **Public**,
+   name e.g. `ahi-o-te-manawa` → **do not** tick "Add a README", .gitignore or
+   licence.
+2. **Connect and push** from this project folder:
+
+   ```bash
+   git remote add origin https://github.com/YOUR-USERNAME/ahi-o-te-manawa.git
+   git push -u origin main
+   ```
+
+3. **Import into Netlify** — app.netlify.com → *Add new site* → *Import an
+   existing project* → GitHub → pick the repo → keep the auto-detected
+   settings (build command: none; publish directory `.` comes from
+   `netlify.toml`) → **Deploy**.
+4. **Enable Identity + Git Gateway** (section 8 above) so `/admin` can log in.
+5. (Optional) add your real domain under *Domain management* and update the
+   canonical/og URLs in the HTML, `robots.txt` and `sitemap.xml` (the
+   `www.ahiotemanawa.example` placeholders).
+
+### Day to day
+
+- **Client edits:** log in at `/admin`, change content, press **Publish** —
+  that is a Git commit; Netlify redeploys automatically.
+- **Developer edits:** edit locally, then `git pull --rebase` (to pick up any
+  CMS edits), `git add … && git commit && git push` — Netlify redeploys.

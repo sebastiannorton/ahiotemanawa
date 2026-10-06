@@ -8,10 +8,56 @@ Read this first, then consult the four spec documents for design/content detail.
 existing project conventions. If this file disagrees with the specs,
 **the specs win**.
 
-**Last updated:** 10 February 2026
+**Last updated:** 6 October 2026
 
 ---
 
+## 0. Session — 6 October 2026: SEO + performance pass
+
+Baseline: `seo/lighthouse20261006.json` (mobile, home) — Perf 86, LCP 4.1 s,
+6.9 MB payload, 110 image requests. Two approved batches applied:
+
+**Non-intrusive (all four pages).**
+- `<head>`: self-referencing canonical, Open Graph + Twitter cards, JSON-LD
+  (`Organization`/`LocalBusiness` NAP + `WebSite`), `robots` meta.
+- Hero preload with `fetchpriority="high"` (index).
+- **Poppins self-hosted** — `public/fonts/` woff2, weights 300/400/500/600/
+  700/800, latin + latin-ext, `@font-face` + `font-display: swap` + preload
+  in each head; Google Fonts `<link>`s removed from all pages.
+- `css/styles.min.css` + `js/*.min.js` generated (sources kept; pages
+  reference the minified files at `?v=23`).
+- Home-strip WebPs re-encoded ≤1000 px; **gallery thumbs re-encoded to
+  480 px** (102 files ≈ 3.2 MB total, was 640 px).
+- A11y: logo accessible-name fixed; `<main>` landmark on every page.
+- `sitemap.xml` + `robots.txt` created — **both contain a TODO placeholder
+  domain (`www.ahiotemanawa.example`) that must be swapped for the real
+  domain at deployment.**
+
+**Intrusive (approved: I1, I2, I4, I5, I7).**
+- I1: `galleries.js` builds each strip lazily via IntersectionObserver
+  (400 px rootMargin; builds immediately under `prefers-reduced-motion`
+  or when IO is unavailable).
+- I2: `PREVIEW_LIMIT = 12` previews per strip; lightbox still shows the
+  full set.
+- I4: home `<h1>` is now the visible green kicker line under the hero
+  ("Ahi o te Manawa / retreat & regenerative land / Mt Kakaramea, Lake
+  Taupō"); the Bright Principles marquee was demoted to
+  `<p class="statement">`, styled identically.
+- I5: font self-hosting (above).
+- I7: unreferenced gallery-web strays + `.DS_Store` pruned.
+
+**⚠ Critical caveats for future sessions**
+1. **27 gallery WebPs are rotated 90° CW on top of the upright JPGs**
+   (tangata ×11, whare ×12, whenua ×4 — earlier sessions). **Do NOT
+   re-run `scripts/optimize-images.sh`** — it rebuilds WebPs from the
+   JPGs and flips them sideways. If it ever runs, re-apply the rotation
+   round-trip (`dwebp` → `sips -r 90` → `cwebp`, q82 thumbs / q78 full).
+2. `galleries.js` carries `IMG_VER = "2"` cache-bust on thumb/full URLs —
+   bump it whenever gallery WebPs change on disk.
+
+---
+
+## 1. Stack & structure
 ## 1. Stack & structure
 
 Static HTML + CSS + vanilla JS. **No build step, no framework, no npm.**

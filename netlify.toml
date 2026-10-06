@@ -1,0 +1,15 @@
+# Netlify deploy settings — plain static site, no build step.
+# "publish" is the repo root: the HTML pages, css/, js/, admin/, data/
+# and public/ are all served as-is.
+
+[build]
+  publish = "."
+  command = ""
+
+# Make sure the Content Manager is reachable at /admin (Netlify serves
+# /admin/index.html for the bare /admin path).
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200

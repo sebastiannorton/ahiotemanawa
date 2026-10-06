@@ -1,0 +1,147 @@
+# ============================================================
+# Decap CMS configuration — https://decapcms.org/docs
+#
+# The Content Manager lives at <site>/admin (admin/index.html loads
+# the Decap bundle; this file tells it what to edit).
+#
+# Login: Netlify Identity → Git Gateway (README.md section 8).
+# ============================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Uploaded images land in public/images — the same folder the site
+# already reads from. Existing photo filenames are governed by
+# ASSET-MANIFEST.md; never rename them.
+media_folder: "public/images"
+public_folder: "/public/images"
+
+collections:
+  # ------------------------------------------------------------
+  # 1) SITE SETTINGS — edits data/config.json.
+  #    js/config.js (loaded first on every page) fetches that file
+  #    and exposes it to the site as SITE_CONFIG.
+  # ------------------------------------------------------------
+  - name: "settings"
+    label: "Site settings"
+    editor:
+      preview: false
+    files:
+      - name: "site-config"
+        label: "Site configuration"
+        file: "data/config.json"
+        fields:
+          - label: "Site name"
+            name: "siteName"
+            widget: "string"
+          - label: "Tagline"
+            name: "tagline"
+            widget: "string"
+          - label: "Contact email"
+            name: "contactEmail"
+            widget: "string"
+            hint: "Shown on the contact page and used as the form's reply-to address."
+          - label: "Address lines"
+            name: "addressLines"
+            widget: "list"
+            hint: "One line per entry — shown in the contact page 'find us' block."
+          - label: "Google Maps embed URL"
+            name: "mapsEmbedSrc"
+            widget: "string"
+            hint: "Google Maps → Share → Embed a map → copy the src URL (https://www.google.com/maps/embed?pb=...)."
+          - label: "Contact form endpoint"
+            name: "FORM_ENDPOINT"
+            widget: "string"
+            required: false
+            hint: "Where the contact form POSTs (currently a Formspree-style endpoint). An EmailJS integration is planned — leave as-is until then."
+          - label: "Events Google Sheet CSV URL"
+            name: "EVENTS_CSV_URL"
+            widget: "string"
+            hint: "Google Sheet → File → Share → Publish to web → CSV. See README section 1."
+          - label: "RSS feed URL (Notes from the Land)"
+            name: "RSS_FEED_URL"
+            widget: "string"
+            hint: "Substack feed, usually https://YOURNAME.substack.com/feed"
+          - label: "Gallery sections"
+            name: "GALLERY_SECTIONS"
+            widget: "list"
+            hint: "Whare / Whenua / Tangata. Do not change existing keys or folders — they map to folders under public/images/gallery-web/."
+            fields:
+              - label: "Key"
+                name: "key"
+                widget: "string"
+                hint: "Internal id (whare / whenua / tangata) — do not change."
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Subtitle"
+                name: "subtitle"
+                widget: "string"
+              - label: "Folder"
+                name: "folder"
+                widget: "string"
+                hint: "Folder name under public/images/gallery-web/ — do not change."
+              - label: "Alt-text prefix"
+                name: "altPrefix"
+                widget: "string"
+              - label: "Image filenames"
+                name: "images"
+                widget: "list"
+                hint: "Fallback file list — the galleries normally read js/gallery-manifest.js. Filenames must match exactly; never rename photos."
+
+  # ------------------------------------------------------------
+  # 2) PAGES — the four static HTML pages, edited as raw HTML.
+  #    An HTML file with no front-matter is exposed by Decap as a
+  #    single "body" field and written back verbatim on save.
+  # ------------------------------------------------------------
+  - name: "pages"
+    label: "Pages"
+    editor:
+      preview: false
+    files:
+      - name: "home"
+        label: "Home page"
+        file: "index.html"
+        fields:
+          - label: "Page HTML"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+      - name: "purpose"
+        label: "Purpose page"
+        file: "purpose.html"
+        fields:
+          - label: "Page HTML"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+      - name: "events"
+        label: "Events page"
+        file: "events.html"
+        fields:
+          - label: "Page HTML"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+      - name: "contact"
+        label: "Contact page"
+        file: "contact.html"
+        fields:
+          - label: "Page HTML"
+            name: "body"
+            widget: "code"
+            default_language: "html"
+            allow_language_selection: false
+
+# ------------------------------------------------------------
+# Optional local development: uncomment the line below and run
+#   npx decap-server
+# next to the local web server, then open http://localhost:8000/admin/
+# — saves write to the local files instead of GitHub.
+# Keep it commented out in production.
+# ------------------------------------------------------------
+# local_backend: true

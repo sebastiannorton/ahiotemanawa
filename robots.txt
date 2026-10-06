@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# TODO: after deployment, replace www.ahiotemanawa.example with the
+# production domain (also update the sitemap URL below).
+Sitemap: https://www.ahiotemanawa.example/sitemap.xml

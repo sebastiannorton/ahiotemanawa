@@ -9,6 +9,15 @@
    Speed: duration was doubled (max(120, n*14)s) = half the previous
    scroll speed. Tweak SCROLL_BASE/SCROLL_PER_ITEM to adjust.
 
+   Performance:
+   - PREVIEW_LIMIT caps how many thumbnails a strip shows inline;
+     the lightbox still opens the FULL image set for that section.
+   - A strip only builds (and requests) its thumbnails when it comes
+     near the viewport (IntersectionObserver), so the home page no
+     longer eagerly downloads ~100 gallery images at load.
+   - IMG_VER cache-busts the WebP URLs so re-generated/rotated
+     images are picked up without visitors hard-refreshing.
+
    Filenames from js/gallery-manifest.js (scripts/optimize-images.sh)
    with SITE_CONFIG.GALLERY_SECTIONS (js/config.js) as fallback.
    Thumbs: public/images/gallery-web/<folder>/thumbs/<file>
@@ -25,6 +34,11 @@
   var manifest = window.GALLERY_MANIFEST || null;
   var SCROLL_BASE = 120;      /* seconds — half the earlier 60s */
   var SCROLL_PER_ITEM = 14;   /* seconds — half the earlier 7s  */
+  var PREVIEW_LIMIT = 12;     /* thumbnails shown inline per strip */
+  var IMG_VER = "2";          /* bump when gallery WebPs are re-generated */
+
+  var reduced = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var sections = (cfg.GALLERY_SECTIONS || [])
     .map(function (s) {
@@ -45,10 +59,10 @@
     return String(name).replace(/\.[^./\\]+$/, ".webp");
   }
   function thumbUrl(sec, file) {
-    return "public/images/gallery-web/" + sec.folder + "/thumbs/" + toWebp(file);
+    return "public/images/gallery-web/" + sec.folder + "/thumbs/" + toWebp(file) + "?v=" + IMG_VER;
   }
   function fullUrl(sec, file) {
-    return "public/images/gallery-web/" + sec.folder + "/full/" + toWebp(file);
+    return "public/images/gallery-web/" + sec.folder + "/full/" + toWebp(file) + "?v=" + IMG_VER;
   }
 
   function buildItem(sec, file, i, isDup) {
@@ -100,20 +114,46 @@
 
     var track = document.createElement("div");
     track.className = "gal-track";
-    /* half speed: doubled durations */
-    track.style.setProperty("--dur", Math.max(SCROLL_BASE, sec.images.length * SCROLL_PER_ITEM) + "s");
 
-    sec.images.forEach(function (file, i) {
-      track.appendChild(buildItem(sec, file, i, false));
-    });
-    sec.images.forEach(function (file, i) {
-      track.appendChild(buildItem(sec, file, i, true));
-    });
+    /* preview set: first N images (original indices kept, so a preview
+       click opens the lightbox on the same photo within the full set) */
+    var previewFiles = sec.images.slice(0, PREVIEW_LIMIT);
+    /* half speed: doubled durations */
+    track.style.setProperty("--dur", Math.max(SCROLL_BASE, previewFiles.length * SCROLL_PER_ITEM) + "s");
 
     strip.appendChild(track);
     block.appendChild(strip);
     root.appendChild(block);
+
+    /* defer building (and downloading) until the strip is near the
+       viewport; falls back to immediate build for reduced-motion or
+       browsers without IntersectionObserver */
+    if (reduced || !("IntersectionObserver" in window)) {
+      populate(track, sec, previewFiles);
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            populate(track, sec, previewFiles);
+            io.disconnect();
+          }
+        });
+      }, { rootMargin: "400px 0px" });
+      io.observe(strip);
+    }
   });
+
+  /* fill the (initially empty) track with the preview set + seamless dup */
+  function populate(track, sec, previewFiles) {
+    if (track.dataset.populated) return;
+    track.dataset.populated = "1";
+    previewFiles.forEach(function (file, i) {
+      track.appendChild(buildItem(sec, file, i, false));
+    });
+    previewFiles.forEach(function (file, i) {
+      track.appendChild(buildItem(sec, file, i, true));
+    });
+  }
 
   /* make sure every strip is animating immediately from page load
      (no hover needed) — force one reflow then confirm play state */

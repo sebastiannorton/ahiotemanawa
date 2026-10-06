@@ -69,6 +69,8 @@ window.GALLERY_MANIFEST = {
     "builders.webp",
     "carving floor.webp",
     "cloaked mages.webp",
+    "full moon fire 2.webp",
+    "full moon fire.webp",
     "IMG_1666.webp",
     "IMG_1668.webp",
     "IMG_1669.webp",

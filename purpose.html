@@ -3,12 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahi o te Manawa — Purpose</title>
+  <title>Purpose of Ahi o te Manawa — Regenerative Land Care</title>
   <meta name="description" content="The purpose of Ahi o te Manawa — regenerative culture, land care, opportunities and WWOOFing.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=20">
+  <meta name="robots" content="index, follow">
+  <!-- TODO: replace www.ahiotemanawa.example with the production domain —
+       canonical/og:url here plus the same value in robots.txt and sitemap.xml. -->
+  <link rel="canonical" href="https://www.ahiotemanawa.example/purpose.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ahi o te Manawa">
+  <meta property="og:title" content="Purpose of Ahi o te Manawa — Regenerative Land Care">
+  <meta property="og:description" content="The purpose of Ahi o te Manawa — regenerative culture, land care, opportunities and WWOOFing.">
+  <meta property="og:url" content="https://www.ahiotemanawa.example/purpose.html">
+  <meta property="og:image" content="https://www.ahiotemanawa.example/public/images/home/home-hero-lake-taupo.JPG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Purpose of Ahi o te Manawa — Regenerative Land Care">
+  <meta name="twitter:description" content="The purpose of Ahi o te Manawa — regenerative culture, land care, opportunities and WWOOFing.">
+  <meta name="twitter:image" content="https://www.ahiotemanawa.example/public/images/home/home-hero-lake-taupo.JPG">
+  <!-- Self-hosted Poppins — no render-blocking third-party font CSS -->
+  <link rel="preload" as="font" type="font/woff2" href="public/fonts/poppins-300-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="public/fonts/poppins-500-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.min.css?v=23">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 </head>
 <body>
@@ -16,7 +30,7 @@
   <!-- ======================= SHARED HEADER (bar) =============================== -->
   <header class="site-header site-header--bar">
     <div class="header-inner">
-      <a class="logo-box" href="index.html" aria-label="Ahi o te Manawa home">
+      <a class="logo-box" href="index.html">
         <!-- TODO: replace with logo-ahiotemanawa.png (ASSET-MANIFEST LOGO_01) when supplied -->
         <img class="logo-icon" src="public/images/logo-ahiotemanawa.svg" alt="Ahi o te Manawa koru logo">
         <span class="logo-text">
@@ -34,6 +48,8 @@
     </div>
   </header>
 
+  <main>
+
   <!-- ======================= PURPOSE CONTENT ================================== -->
   <div class="section container purpose-section">
     <h1>purpose of Ahi o te manawa</h1>
@@ -41,6 +57,16 @@
     <p>&ldquo;slow down and connect with your heart&rdquo;</p>
     <p>there is a deep want for the exploration into regenerative culture. What does this look like in action when people gather together to create community and villaging, grow food and celebrate.</p>
     <p>to be an Archearchy Invention Centre.</p>
+
+    <!-- Tui songbird — clip of the land's birdsong (public/tui songbird.webm).
+         Native HTML5 player: click-to-play controls, no autoplay. The src is
+         URL-encoded because the filename contains a space. -->
+    <figure class="media-clip">
+      <video controls preload="metadata" playsinline aria-label="A tui songbird singing at Ahi o te Manawa">
+        <source src="public/tui%20songbird.webm" type="video/webm">
+        your browser can't play this video — <a href="public/tui%20songbird.webm">download the tui songbird clip</a>.
+      </video>
+    </figure>
 
     <h2>context</h2>
     <p>radical responsibility.</p>
@@ -94,11 +120,13 @@
       <a href="contact.html">contact</a>
     </nav>
     <p class="footer-copyright">&copy; 2026 Ahi o te Manawa. All rights reserved.</p>
+  </main>
+
   </footer>
 
-  <script src="js/config.js"></script>
-  <script src="js/images.js"></script>
-  <script src="js/anim.js"></script>
-  <script src="js/menu.js"></script>
+  <script src="js/config.min.js?v=24"></script>
+  <script src="js/images.min.js?v=23"></script>
+  <script src="js/anim.min.js?v=23"></script>
+  <script src="js/menu.min.js?v=23"></script>
 </body>
 </html>

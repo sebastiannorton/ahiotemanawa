@@ -1,7 +1,8 @@
 /* ============================================================
    Contact page — details, map and form.
 
-   All editable values come from SITE_CONFIG in js/config.js.
+   All editable values come from SITE_CONFIG, loaded from data/config.json
+   (edit via the CMS admin: /admin → Site settings).
    TODO items show where real client data is still needed.
    ============================================================ */
 (function () {
@@ -16,9 +17,9 @@
       emailEl.textContent = email;
       emailEl.href = "mailto:" + email;
     } else {
-      emailEl.textContent = "hello@ahiotemanawa.example";
-      emailEl.href = "mailto:hello@ahiotemanawa.example";
-      emailEl.title = "TODO: add the real contact email in js/config.js (SITE_CONFIG.contactEmail)";
+      emailEl.textContent = "hello@ahiotemanawa.nz";
+      emailEl.href = "mailto:hello@ahiotemanawa.nz";
+      emailEl.title = "Contact email — set in data/config.json (admin: Site settings)";
     }
   }
 
