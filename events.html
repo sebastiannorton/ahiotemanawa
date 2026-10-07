@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="css/styles.min.css?v=23">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 </head>
-<body>
+<body data-content-page="events">
 
   <!-- ======================= SHARED HEADER (bar) =============================== -->
   <header class="site-header site-header--bar">
@@ -55,38 +55,38 @@
        sheet URL via the CMS (/admin → Site settings) — it lives in
        data/config.json as SITE_CONFIG.EVENTS_CSV_URL. See README.md. -->
   <div class="section container" style="padding-bottom: .5rem;">
-    <h1>spaces at Ahi o te Manawa</h1>
+    <h1 data-content="pageTitle">spaces at Ahi o te Manawa</h1>
   </div>
 
   <!-- Three time groups, populated by js/events.js from the sheet -->
   <section class="events-group">
     <div class="container">
-      <h2>upcoming spaces</h2>
+      <h2 data-content="upcomingTitle">upcoming spaces</h2>
       <div class="event-grid" id="event-grid" aria-live="polite"></div>
     </div>
   </section>
 
   <section class="events-group" id="events-inprogress" hidden>
     <div class="container">
-      <h2>in progress</h2>
+      <h2 data-content="inProgressTitle">in progress</h2>
       <div class="event-grid" id="inprogress-event-grid"></div>
     </div>
   </section>
 
   <section class="events-group" id="events-past" hidden>
     <div class="container">
-      <h2>past spaces</h2>
+      <h2 data-content="pastSpacesTitle">past spaces</h2>
       <div class="event-grid" id="past-event-grid"></div>
     </div>
   </section>
 
   <!-- ======================= PAST EVENTS ===================================== -->
   <div class="section container">
-    <h2>past events</h2>
+    <h2 data-content="pastEventsTitle">past events</h2>
 <!-- --------------------- Momentum ------------------------------ -->
-  <section class="past-event">
+  <section class="past-event" data-past-event="momentum">
     <div class="container">
-      <h2>Momentum</h2>
+      <h2 data-past-event-title>Momentum</h2>
 
       <div class="photo-row">
         <div class="asset" style="aspect-ratio: 4 / 3;">
@@ -119,8 +119,10 @@
         </div>
       </div>
 
-      <p>Momentum was a one week alive gathering of Possibilitators on a Year Long space holder training who came together for an in person training.</p>
-      <p>practicing delivering maps and being with resistances, fears and skills to be better space holders for delivering Possibility Management derived distinctions and thoughtware to communities and workshops.</p>
+      <div data-past-event-paragraphs="description">
+        <p>Momentum was a one week alive gathering of Possibilitators on a Year Long space holder training who came together for an in person training.</p>
+        <p>practicing delivering maps and being with resistances, fears and skills to be better space holders for delivering Possibility Management derived distinctions and thoughtware to communities and workshops.</p>
+      </div>
 
       <div class="two-col two-col--wide-quote">
         <div class="media momentum-pair">
@@ -139,7 +141,7 @@
             </picture>
           </div>
         </div>
-        <blockquote class="quote-group text">
+        <blockquote class="quote-group text" data-past-event-paragraphs="testimonial" data-paragraph-class="testimonial">
           <p class="testimonial">My most recent legend from the land is an experience of collaboration.</p>
           <p class="testimonial">Seven people gathered there to explore their Spaceholder skills, and I was sharing meals with them. During the first lunch, things were a bit clumsy, and people were bumping into each other.</p>
           <p class="testimonial">By the second lunch, I could see a shift happening.</p>
@@ -153,9 +155,9 @@
   </div>
 
   <!-- --------------------- Gaian Mens Bridge House ------------------ -->
-  <section class="past-event">
+  <section class="past-event" data-past-event="bridgeHouse">
     <div class="container">
-      <h2>Gaian Mens Bridge House</h2>
+      <h2 data-past-event-title>Gaian Mens Bridge House</h2>
 
       <div class="photo-row">
         <div class="asset" style="aspect-ratio: 4 / 3;">
@@ -195,9 +197,9 @@
         </div>
       </div>
 
-      <p>for 7 weeks a few Men lived at Ahi o te Manawa and researched how it goes for Men to live together in a way that was intimate with the land and each other (and for clarity it had nothing to do with sexuality); it was about connecting with our hearts and creating intimacy &amp; curiosity of how it goes to be in the moment to moment of life with our conscious feelings and heart felt connections.</p>
+      <div data-past-event-paragraphs="description"><p>for 7 weeks a few Men lived at Ahi o te Manawa and researched how it goes for Men to live together in a way that was intimate with the land and each other (and for clarity it had nothing to do with sexuality); it was about connecting with our hearts and creating intimacy &amp; curiosity of how it goes to be in the moment to moment of life with our conscious feelings and heart felt connections.</p></div>
 
-      <blockquote class="quote-group event-stack">
+      <blockquote class="quote-group event-stack" data-past-event-paragraphs="testimonialOne" data-paragraph-class="testimonial">
         <p class="testimonial">I came all the way from Canada and landed on this land for a project called &ldquo;Gaian Mens Bridge House&rdquo; with my personal quest to be more turned on and on fire in my own life, and to explore Being with, collaboration and vulnerability amongst other men, and reconnection with nature.</p>
         <p class="testimonial">How to be more fulfilled and nourished is what I learned and experienced here.</p>
         <p class="testimonial">I feel joy thinking back of the many intimate sharings of my feelings with my fellow brothers there, breaking the scarcity of being vulnerable with other men.</p>
@@ -206,7 +208,7 @@
         <p class="testimonial-name">— Leonhard Geupel</p>
       </blockquote>
 
-      <blockquote class="quote-group event-stack">
+      <blockquote class="quote-group event-stack" data-past-event-paragraphs="testimonialTwo" data-paragraph-class="testimonial">
         <p class="testimonial">Being on the land feels like magic. Surrounded by native forest, I experience a sense of protection, while the views over the lake offered me a space to dream.</p>
         <p class="testimonial">I love sitting on the porch in the mornings with a cup of coffee, looking out over the landscape while sorting through my feelings and becoming centered. It is a delicious way to begin the day.</p>
         <p class="testimonial">My time at Ahi o te Manawa has been connected with transformation and collaboration.</p>
@@ -217,9 +219,9 @@
   </section>
 
   <!-- --------------------- Togethering ------------------------------ -->
-  <section class="past-event">
+  <section class="past-event" data-past-event="togethering">
     <div class="container">
-      <h2>Togethering</h2>
+      <h2 data-past-event-title>Togethering</h2>
 
       <div class="photo-row">
         <div class="asset" style="aspect-ratio: 4 / 3;">
@@ -245,14 +247,15 @@
         </div>
       </div>
 
-      <p>for 1 week a group of Men came together to be with each other. These Men have been together over a 2 year period in some major transformational spaces including 2 &ldquo;Labs for Men&rdquo; - 5 day intense workshops based in Possibility Management where we looked deeply into Patriarchy and how we as Men are showing up in the world and how we want to show up - discovering the void that is the difference between these two places.</p>
-      <p>in the second Lab we started with a question from Woman.........&ldquo;Where are the Men?&rdquo;</p>
-      <p>this week was a different space where we really got to enjoy being with each other with our feelings, hearts and the abundance of life.</p>
-      <p class="testimonial">One of the Men Tristan Girdwood
-        <a href="https://jaybennett.substack.com/p/stories-of-the-mens-bridgehouse" target="_blank" rel="noopener">wrote this article about it.</a></p>
+      <div data-past-event-paragraphs="description">
+        <p>for 1 week a group of Men came together to be with each other. These Men have been together over a 2 year period in some major transformational spaces including 2 &ldquo;Labs for Men&rdquo; - 5 day intense workshops based in Possibility Management where we looked deeply into Patriarchy and how we as Men are showing up in the world and how we want to show up - discovering the void that is the difference between these two places.</p>
+        <p>in the second Lab we started with a question from Woman.........&ldquo;Where are the Men?&rdquo;</p>
+        <p>this week was a different space where we really got to enjoy being with each other with our feelings, hearts and the abundance of life.</p>
+      </div>
+      <p class="testimonial"><span data-content-link-prefix>One of the Men Tristan Girdwood</span> <a data-content-link="pastEvents.togethering.article" href="https://jaybennett.substack.com/p/stories-of-the-mens-bridgehouse" target="_blank" rel="noopener">wrote this article about it.</a></p>
 
       <div class="two-col">
-        <blockquote class="quote-group text">
+        <blockquote class="quote-group text" data-past-event-paragraphs="poem" data-paragraph-class="testimonial">
           <p class="testimonial">Ahi o te Manawa<br>
             A place to rest your soul<br>
             Companions you will find here<br>
@@ -301,6 +304,7 @@
   </footer>
 
   <script src="js/config.min.js?v=24"></script>
+  <script src="js/page-content.js?v=1"></script>
   <script src="js/images.min.js?v=23"></script>
   <script src="js/events.min.js?v=23"></script>
   <script src="js/anim.min.js?v=23"></script>

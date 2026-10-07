@@ -61,7 +61,7 @@
   <link rel="stylesheet" href="css/styles.min.css?v=23">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 </head>
-<body>
+<body data-content-page="home">
 
   <!-- ======================= SHARED HEADER (Home: overlaid on hero) ============ -->
   <section class="hero" id="home">
@@ -102,17 +102,17 @@
        Edit the words here; the marquee repeats them seamlessly. -->
   <div class="section container statement-wrap">
     <!-- Real, keyword-relevant page heading — subtle tracked kicker -->
-    <h1 class="home-kicker">Ahi o te Manawa<span class="sep">/</span>retreat &amp; regenerative land<span class="sep">/</span>Mt Kakaramea, Lake Taupō</h1>
+    <h1 class="home-kicker" data-content="heroKicker">Ahi o te Manawa / retreat &amp; regenerative land / Mt Kakaramea, Lake Taupō</h1>
 
     <!-- Bright Principles marquee — decorative; demoted from h1 to p now
          that .home-kicker above is the page's real heading. The words stay
          available to screen readers via the sr-only span. -->
     <p class="statement">
-      <span class="sr-only">connection evolution abundance healing love</span>
+      <span class="sr-only" data-content-principles-reader>connection evolution abundance healing love</span>
       <span class="marquee" aria-hidden="true">
         <span class="marquee-track">
-          <span class="marquee-run">connection&ensp;&ensp;evolution&ensp;&ensp;abundance&ensp;&ensp;healing&ensp;&ensp;love&ensp;&ensp;</span>
-          <span class="marquee-run">connection&ensp;&ensp;evolution&ensp;&ensp;abundance&ensp;&ensp;healing&ensp;&ensp;love&ensp;&ensp;</span>
+          <span class="marquee-run" data-content-principles-track>connection  evolution  abundance  healing  love  </span>
+          <span class="marquee-run" data-content-principles-track>connection  evolution  abundance  healing  love  </span>
         </span>
       </span>
     </p>
@@ -125,9 +125,7 @@
 
   <!-- Pull-quote 1 (Brand Green) -->
   <div class="section container">
-    <blockquote class="pull-quote">&ldquo;just like the earth, anything can surface here.
-      Your soft tenderness. Your ferocious wildness and anything in between.
-      It is a calling home to yourself.&rdquo;</blockquote>
+    <blockquote class="pull-quote" data-content="quoteOne">&ldquo;just like the earth, anything can surface here. Your soft tenderness. Your ferocious wildness and anything in between. It is a calling home to yourself.&rdquo;</blockquote>
   </div>
 
   <!-- Photo strip — 4 images in a row (IMAGE_02–05), WebP + JPG fallback -->
@@ -166,42 +164,43 @@
 
   <!-- (About) intro line -->
   <div class="section container">
-    <p>(about) ahi o te manawa is Māori for Fire of the Heart.</p>
+    <p data-content="about">(about) ahi o te manawa is Māori for Fire of the Heart.</p>
   </div>
 <!-- location -->
   <div class="section container">
-    <h2>location</h2>
-    <p>this land sits on the side of Mt Kakaramea on the edge of the volcanic rim of Lake Taupo in the middle of the North Island of New Zealand. To the west the steaming hill of Te Hāpua thermal field and to the north Lake Taupo. The village of little Waihi sits below on the lake edge. Tokaanu is 2 km down windy hill and Turangi is 8 kms away.</p>
+    <h2 data-content="locationTitle">location</h2>
+    <p data-content="location">this land sits on the side of Mt Kakaramea on the edge of the volcanic rim of Lake Taupo in the middle of the North Island of New Zealand. To the west the steaming hill of Te Hāpua thermal field and to the north Lake Taupo. The village of little Waihi sits below on the lake edge. Tokaanu is 2 km down windy hill and Turangi is 8 kms away.</p>
   </div>
 
   <!-- the spaces -->
   <div class="section container">
-    <h2>the spaces</h2>
-    <p>the original native timber house acts as the central hub, the kitchen, living and outdoor deck provides an indoor connection space. There is a bathroom, toilet and Laundry plus 2 rooms that act as bedrooms or workrooms.</p>
-    <p>the Healing Heart is a &ldquo;cabin&rdquo; that has a mezzanine sleeping floor and a super cosy downstairs including log fire. An outer deck houses a camp kitchen and bathroom.</p>
-    <p>the workshop provides a place for carving, mechanics..........whatever the creation space needs.</p>
-    <p>the wood fired hot tub provides a place to soak the bones on a cold day and a night vista of celestial brilliance.</p>
-    <p>the outdoor fire provides a place for circle. Full moon drumming included.</p>
-    <p>in Spring and Summer a sweat lodge is present for the alchemical cleanse of the spirit.</p>
-    <p>the dark volcanic earth along with the north facing land grows abundance.</p>
-    <p>the grassed areas provide sitting gathering and lying around in the sun places aplenty.</p>
-    <p>regenerating forest surrounds the property and holds a few secrets.</p>
+    <h2 data-content="spacesTitle">the spaces</h2>
+    <div data-content-paragraphs="spaces">
+      <p>the original native timber house acts as the central hub, the kitchen, living and outdoor deck provides an indoor connection space. There is a bathroom, toilet and Laundry plus 2 rooms that act as bedrooms or workrooms.</p>
+      <p>the Healing Heart is a &ldquo;cabin&rdquo; that has a mezzanine sleeping floor and a super cosy downstairs including log fire. An outer deck houses a camp kitchen and bathroom.</p>
+      <p>the workshop provides a place for carving, mechanics..........whatever the creation space needs.</p>
+      <p>the wood fired hot tub provides a place to soak the bones on a cold day and a night vista of celestial brilliance.</p>
+      <p>the outdoor fire provides a place for circle. Full moon drumming included.</p>
+      <p>in Spring and Summer a sweat lodge is present for the alchemical cleanse of the spirit.</p>
+      <p>the dark volcanic earth along with the north facing land grows abundance.</p>
+      <p>the grassed areas provide sitting gathering and lying around in the sun places aplenty.</p>
+      <p>regenerating forest surrounds the property and holds a few secrets.</p>
+    </div>
   </div>
 
   <!-- the people -->
   <div class="section container">
-    <h2>the people</h2>
-    <p>there is history here. Souls have been passing through this place for nearly 100 years.</p>
-    <p>nowadays creators, evolutionaries, researchers, earth guardians and archan inhabitors are being called in.</p>
-    <p>somedays there are travellers here, somedays a man and a dog, somedays cyclists passing by, other days WWOOFers, and upon others, groups of Men and Women opening their hearts and being with themselves, each other and the land.</p>
+    <h2 data-content="peopleTitle">the people</h2>
+    <div data-content-paragraphs="people">
+      <p>there is history here. Souls have been passing through this place for nearly 100 years.</p>
+      <p>nowadays creators, evolutionaries, researchers, earth guardians and archan inhabitors are being called in.</p>
+      <p>somedays there are travellers here, somedays a man and a dog, somedays cyclists passing by, other days WWOOFers, and upon others, groups of Men and Women opening their hearts and being with themselves, each other and the land.</p>
+    </div>
   </div>
 
   <!-- Pull-quote 2 -->
   <div class="section container">
-    <blockquote class="pull-quote">&ldquo;I love sitting on the porch in the mornings with a cup of coffee,
-      looking out over the landscape while sorting
-      through my feelings and becoming centered.
-      It is a delicious way to begin the day&rdquo;.</blockquote>
+    <blockquote class="pull-quote" data-content="quoteTwo">&ldquo;I love sitting on the porch in the mornings with a cup of coffee, looking out over the landscape while sorting through my feelings and becoming centered. It is a delicious way to begin the day&rdquo;.</blockquote>
   </div>
 <!-- ===================== GALLERIES (client addition, before Kaitiaki) ======= -->
   <!-- Three clickable galleries — Whare / Whenua / Tangata. Filenames are
@@ -214,8 +213,8 @@
 
   <!-- ===================== Kaitiaki : Guardians =============================== -->
   <div class="section container">
-    <h2>kaitiaki : guardians</h2>
-    <p class="testimonial">Two hearts holding this land and the spaces that move through it.</p>
+    <h2 data-content="guardiansTitle">kaitiaki : guardians</h2>
+    <p class="testimonial" data-content="guardiansIntro">Two hearts holding this land and the spaces that move through it.</p>
   </div>
 
   <!-- Guardian 1 — Jay Bennett (photo left / text right) -->
@@ -231,28 +230,30 @@
       <p class="photo-caption">Jay Bennett</p>
     </div>
     <div class="text">
-      <h3>Jay Bennett</h3>
-      <p>i have been the guardian of this land for 25 years.</p>
-      <p>i say guardian because it is such a privilege to call this place home.</p>
-      <p>to own land is such a bizarre concept to me.</p>
-      <p>the land has a soul and a voice, an energy and a flow.</p>
-      <p>i feel a lot of joy and sadness to be so deeply connected to Ahi o te Manawa.</p>
-      <p>you can find out more about me here: www.jay.........................
-        <!-- TODO: Real URL required from client — see CONTENT-MAP.md Section 8 --></p>
-      <p>it is time for this land to interact with more people and people with the land.</p>
-      <p>on a number of occasions I have sat with the land and asked what now.</p>
-      <p>and what I hear is...................it is time for the culture of regeneration to become fully alive.</p>
-      <p>aroha nui, Jay.</p>
+      <h3 data-content="jayName">Jay Bennett</h3>
+      <div data-content-paragraphs="jayBio">
+        <p>i have been the guardian of this land for 25 years.</p>
+        <p>i say guardian because it is such a privilege to call this place home.</p>
+        <p>to own land is such a bizarre concept to me.</p>
+        <p>the land has a soul and a voice, an energy and a flow.</p>
+        <p>i feel a lot of joy and sadness to be so deeply connected to Ahi o te Manawa.</p>
+        <p>you can find out more about me here: www.jay.........................</p>
+        <p>it is time for this land to interact with more people and people with the land.</p>
+        <p>on a number of occasions I have sat with the land and asked what now.</p>
+        <p>and what I hear is...................it is time for the culture of regeneration to become fully alive.</p>
+        <p>aroha nui, Jay.</p>
+      </div>
     </div>
   </div>
 
   <!-- Guardian 2 — Jason Horton (text left / photo right) -->
   <div class="section container two-col">
     <div class="text">
-      <h3>Jason Horton</h3>
-      <p>i am a guardian of Men's evolutionary spaces, healing spaces and spaces to retreat and grow. Ahi o te Manawa is one such place and I am on Jay Bennett's team to hold and create this space as a beacon of Empowerment, healing and connection.</p>
-      <p>more about Jason
-        <a href="https://jasonhorton.mystrikingly.com/" target="_blank" rel="noopener">https://jasonhorton.mystrikingly.com/</a></p>
+      <h3 data-content="jasonName">Jason Horton</h3>
+      <div data-content-paragraphs="jasonBio">
+        <p>i am a guardian of Men's evolutionary spaces, healing spaces and spaces to retreat and grow. Ahi o te Manawa is one such place and I am on Jay Bennett's team to hold and create this space as a beacon of Empowerment, healing and connection.</p>
+      </div>
+      <p><span data-content-link-prefix>more about Jason</span> <a data-content-link="jasonLink" href="https://jasonhorton.mystrikingly.com/" target="_blank" rel="noopener">https://jasonhorton.mystrikingly.com/</a></p>
     </div>
     <div class="media">
       <div class="asset" style="aspect-ratio: 3 / 4;">
@@ -270,8 +271,8 @@
   <!-- Previews load from the Substack RSS feed (SITE_CONFIG.RSS_FEED_URL in
        data/config.json). Cards link through to the full articles. -->
   <div class="section container">
-    <h2>notes from the land</h2>
-    <h3>stories and updates from Ahi o te Manawa</h3>
+    <h2 data-content="notesTitle">notes from the land</h2>
+    <h3 data-content="notesSubtitle">stories and updates from Ahi o te Manawa</h3>
     <div class="rss-stack" id="rss-stack" aria-live="polite">
       <p class="rss-state" id="rss-state">loading the latest notes…</p>
     </div>
@@ -294,6 +295,7 @@
   </footer>
 
   <script src="js/config.min.js?v=24"></script>
+  <script src="js/page-content.js?v=1"></script>
   <script src="js/images.min.js?v=23"></script>
   <script src="js/gallery-manifest.min.js?v=23"></script>
   <script src="js/galleries.min.js?v=23"></script>

@@ -1,0 +1,16 @@
+{
+  "pageTitle": "purpose of Ahi o te manawa",
+  "intro": ["this land has a message for all people.", "“slow down and connect with your heart”", "there is a deep want for the exploration into regenerative culture. What does this look like in action when people gather together to create community and villaging, grow food and celebrate.", "to be an Archearchy Invention Centre."],
+  "contextTitle": "context",
+  "context": ["radical responsibility."],
+  "landcareTitle": "landcare",
+  "landcare": ["this is a spray free, organic growing environment. Composting toilets are used and grey water systems are in place that are interconnected with plants.", "this is a place for experiments in regenerative technologies. i.e. using biodynamics, flow forms, electro-culture.", "building timbers used wherever possible are locally sourced untreated timbers.", "that the land “owns” itself and that a not for profit"],
+  "opportunitiesTitle": "opportunities",
+  "opportunities": [
+    {"heading": "archan initiators", "paragraphs": ["if you are one of these you are welcome to come and stay and co-create life."]},
+    {"heading": "artists & writers", "paragraphs": ["the Healing Heart Cabin is a self contained Cabin that from time to time is available for mid term stays.", "a beautiful quiet spot to allow you creative flow to unveil itself."]},
+    {"heading": "small group workshops and retreats.", "paragraphs": ["if you are wanting a place to hold 4 to 12 people spaces this may be the place.", "there are a few requirements for this first:"], "bullets": ["this is an alcohol and drug free space.", "a clear context based in regenerative culture is required.", "the land comes first."]},
+    {"heading": "WWOOFing", "paragraphs": ["we accept WWOOFers."], "link": {"prefix": "the listing is:", "label": "https://wwoof.nz/profile/?mid=296971&ref=s", "url": "https://wwoof.nz/profile/?mid=296971&ref=s"}},
+    {"heading": "Warmshowers", "paragraphs": ["if you are a cycle tourist passing by you can find us on Warmshowers."]}
+  ]
+}

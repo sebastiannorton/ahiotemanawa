@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="css/styles.min.css?v=23">
   <link rel="icon" type="image/png" href="public/images/favicon.png">
 </head>
-<body>
+<body data-content-page="purpose">
 
   <!-- ======================= SHARED HEADER (bar) =============================== -->
   <header class="site-header site-header--bar">
@@ -52,11 +52,13 @@
 
   <!-- ======================= PURPOSE CONTENT ================================== -->
   <div class="section container purpose-section">
-    <h1>purpose of Ahi o te manawa</h1>
-    <p>this land has a message for all people.</p>
-    <p>&ldquo;slow down and connect with your heart&rdquo;</p>
-    <p>there is a deep want for the exploration into regenerative culture. What does this look like in action when people gather together to create community and villaging, grow food and celebrate.</p>
-    <p>to be an Archearchy Invention Centre.</p>
+    <h1 data-content="pageTitle">purpose of Ahi o te manawa</h1>
+    <div data-content-paragraphs="intro">
+      <p>this land has a message for all people.</p>
+      <p>&ldquo;slow down and connect with your heart&rdquo;</p>
+      <p>there is a deep want for the exploration into regenerative culture. What does this look like in action when people gather together to create community and villaging, grow food and celebrate.</p>
+      <p>to be an Archearchy Invention Centre.</p>
+    </div>
 
     <!-- Tui songbird — clip of the land's birdsong (public/tui songbird.webm).
          Native HTML5 player: click-to-play controls, no autoplay. The src is
@@ -68,44 +70,38 @@
       </video>
     </figure>
 
-    <h2>context</h2>
-    <p>radical responsibility.</p>
+    <h2 data-content="contextTitle">context</h2>
+    <div data-content-paragraphs="context"><p>radical responsibility.</p></div>
 
-    <h2>landcare</h2>
-    <p>this is a spray free, organic growing environment. Composting toilets are used and grey water systems are in place that are interconnected with plants.</p>
-    <p>this is a place for experiments in regenerative technologies. i.e. using biodynamics, flow forms, electro-culture.</p>
-    <p>building timbers used wherever possible are locally sourced untreated timbers.</p>
+    <h2 data-content="landcareTitle">landcare</h2>
+    <div data-content-paragraphs="landcare">
+      <p>this is a spray free, organic growing environment. Composting toilets are used and grey water systems are in place that are interconnected with plants.</p>
+      <p>this is a place for experiments in regenerative technologies. i.e. using biodynamics, flow forms, electro-culture.</p>
+      <p>building timbers used wherever possible are locally sourced untreated timbers.</p>
+      <p>that the land &ldquo;owns&rdquo; itself and that a not for profit</p>
+    </div>
 
-    <!-- Land Goal line — deliberately incomplete in the source (open item). -->
-    <p>that the land &ldquo;owns&rdquo; itself and that a not for profit
-      <!-- TODO: sentence is incomplete in source material — awaiting the
-           intended full wording from the client (CONTENT-MAP.md Section 8) --></p>
-
-    <h2>opportunities</h2>
-
-    <h3>archan initiators</h3>
-    <p>if you are one of these you are welcome to come and stay and co-create life.</p>
-
-    <h3>artists &amp; writers</h3>
-    <p>the Healing Heart Cabin is a self contained Cabin that from time to time is available for mid term stays.</p>
-    <p>a beautiful quiet spot to allow you creative flow to unveil itself.</p>
-
-    <h3>small group workshops and retreats.</h3>
-    <p>if you are wanting a place to hold 4 to 12 people spaces this may be the place.</p>
-    <p>there are a few requirements for this first:</p>
-    <ol>
-      <li>this is an alcohol and drug free space.</li>
-      <li>a clear context based in regenerative culture is required.</li>
-      <li>the land comes first.</li>
-    </ol>
-
-    <h3>WWOOFing</h3>
-    <p>we accept WWOOFers.</p>
-    <p>the listing is:
-      <a href="https://wwoof.nz/profile/?mid=296971&amp;ref=s" target="_blank" rel="noopener">https://wwoof.nz/profile/?mid=296971&amp;ref=s</a></p>
-
-    <h3>Warmshowers</h3>
-    <p>if you are a cycle tourist passing by you can find us on Warmshowers.</p>
+    <h2 data-content="opportunitiesTitle">opportunities</h2>
+    <div data-purpose-opportunities>
+      <h3>archan initiators</h3>
+      <p>if you are one of these you are welcome to come and stay and co-create life.</p>
+      <h3>artists &amp; writers</h3>
+      <p>the Healing Heart Cabin is a self contained Cabin that from time to time is available for mid term stays.</p>
+      <p>a beautiful quiet spot to allow you creative flow to unveil itself.</p>
+      <h3>small group workshops and retreats.</h3>
+      <p>if you are wanting a place to hold 4 to 12 people spaces this may be the place.</p>
+      <p>there are a few requirements for this first:</p>
+      <ol>
+        <li>this is an alcohol and drug free space.</li>
+        <li>a clear context based in regenerative culture is required.</li>
+        <li>the land comes first.</li>
+      </ol>
+      <h3>WWOOFing</h3>
+      <p>we accept WWOOFers.</p>
+      <p>the listing is: <a href="https://wwoof.nz/profile/?mid=296971&amp;ref=s" target="_blank" rel="noopener">https://wwoof.nz/profile/?mid=296971&amp;ref=s</a></p>
+      <h3>Warmshowers</h3>
+      <p>if you are a cycle tourist passing by you can find us on Warmshowers.</p>
+    </div>
   </div>
 
   <!-- ======================= SHARED FOOTER ==================================== -->
@@ -125,6 +121,7 @@
   </footer>
 
   <script src="js/config.min.js?v=24"></script>
+  <script src="js/page-content.js?v=1"></script>
   <script src="js/images.min.js?v=23"></script>
   <script src="js/anim.min.js?v=23"></script>
   <script src="js/menu.min.js?v=23"></script>

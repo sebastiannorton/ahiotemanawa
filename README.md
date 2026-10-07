@@ -13,7 +13,7 @@ purpose.html      – Purpose (regenerative culture, opportunities, WWOOFing)
 events.html       – Events (Upcoming Spaces + Past Events)
 contact.html      – Contact (email, address, map, form)
 admin/            – ★ browser Content Manager (Decap CMS) — see section 8
-data/config.json  – ★ every client-editable value lives here (edit via /admin)
+data/*.json        – ★ client-editable site and page content (edit via /admin)
 css/styles.css    – shared design system (colours/type/layout)
 js/config.js      – tiny loader that reads data/config.json into SITE_CONFIG
 js/*.js           – behaviour (menu, images, gallery, rss, events, contact)
@@ -242,14 +242,14 @@ there is still **no build step**. The CMS is configured in `admin/config.yml`.
 | Collection | Edits | Notes |
 |---|---|---|
 | **Site settings** | `data/config.json` | Site name, tagline, contact email, address lines, Google Maps embed URL, contact form endpoint, events sheet URL, RSS feed URL, gallery sections. |
-| **Pages** | `index.html`, `purpose.html`, `events.html`, `contact.html` | Each page opens as one editable HTML document. |
+| **Pages** | `data/home.json`, `data/purpose.json`, `data/events.json`, `data/contact.json` | Friendly fields for the text shown on each page. The underlying layouts are protected. |
 | **Media** | `public/images/` | Images uploaded through the CMS land here. |
 
-The pages are plain static HTML, so the **Pages** collection maps each `.html`
-file to a single *Page HTML* field: Decap reads an HTML file that has no
-front-matter as one body value, and writes your edited text back verbatim on
-save. That keeps the deployed site byte-for-byte identical to what you saw in
-the editor — no templating step in between.
+The site remains plain static HTML with no build step. Each page has a matching
+content file in `data/`; a small browser script places those field values into
+the existing layout after the page loads. The original HTML copy remains as a
+fallback if JavaScript is unavailable, while the layout, scripts, and image
+paths are kept out of the CMS so routine edits cannot accidentally break them.
 
 ### Day-to-day editing
 
@@ -258,10 +258,12 @@ the editor — no templating step in between.
 2. Pick a collection:
    - **Site settings → Site configuration** — plain fields. Change a value,
      then press **Publish** (top right).
-   - **Pages** — pick a page and edit the HTML in the code editor. Change only
-     the visible content (text inside `<h1>/<h2>/<h3>`, `<p>`, `<li>`,
-     `alt="…"`, link `href="…"`); leave surrounding tags, `<script>` tags and
-     comments alone unless you are comfortable with HTML. Press **Publish**.
+    - **Pages** — pick the page and fill in the labelled fields. Paragraph lists
+      have an **Add** button for another paragraph and drag handles to reorder
+      them. On the Purpose page, opportunities can include optional numbered
+      requirements and a link. On the Events page, the *Past-event stories*
+      section changes only the written stories; live upcoming events continue to
+      come from the Google Sheet described in section 1. Press **Publish**.
 3. **Every save is a Git commit** to `main` (e.g. "Update Pages · contact"),
    and the commit triggers a Netlify deploy. The live site updates once the
    deploy finishes — usually under a minute. Just refresh the page.
@@ -272,6 +274,11 @@ Existing photo filenames are governed by `ASSET-MANIFEST.md` — never rename
 them. New *gallery* photos additionally need `bash scripts/optimize-images.sh`
 run locally (section 2) to create their `.webp` copies and refresh the gallery
 manifest.
+
+**Page photos and layout:** the CMS intentionally does not offer image or
+layout controls on the Pages entries. Many existing photos use paired WebP and
+original files, so replacing one safely needs a developer; this also protects
+the site’s design from accidental structural changes.
 
 ### Logging in (Netlify Identity — one-time setup)
 

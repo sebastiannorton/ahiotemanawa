@@ -91,9 +91,9 @@ collections:
                 hint: "Fallback file list — the galleries normally read js/gallery-manifest.js. Filenames must match exactly; never rename photos."
 
   # ------------------------------------------------------------
-  # 2) PAGES — the four static HTML pages, edited as raw HTML.
-  #    An HTML file with no front-matter is exposed by Decap as a
-  #    single "body" field and written back verbatim on save.
+  # 2) PAGES — friendly, structured page-copy forms.
+  #    Each entry edits a matching file in data/. The static HTML
+  #    layout and image paths stay protected in the repository.
   # ------------------------------------------------------------
   - name: "pages"
     label: "Pages"
@@ -102,32 +102,173 @@ collections:
     files:
       - name: "home"
         label: "Home page"
-        file: "index.html"
+        file: "data/home.json"
         fields:
-          - label: "Page HTML"
-            name: "body"
-            widget: "text"
+          - { label: "Main heading", name: "heroKicker", widget: "string" }
+          - label: "Principle words"
+            name: "principles"
+            widget: "list"
+            hint: "The scrolling words below the hero. Add one word or short phrase per item."
+          - { label: "First featured quote", name: "quoteOne", widget: "text" }
+          - { label: "About line", name: "about", widget: "text" }
+          - { label: "Location heading", name: "locationTitle", widget: "string" }
+          - { label: "Location description", name: "location", widget: "text" }
+          - { label: "Spaces heading", name: "spacesTitle", widget: "string" }
+          - label: "About the spaces"
+            name: "spaces"
+            widget: "list"
+            hint: "Each item becomes a separate paragraph."
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "People heading", name: "peopleTitle", widget: "string" }
+          - label: "About the people"
+            name: "people"
+            widget: "list"
+            hint: "Each item becomes a separate paragraph."
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Second featured quote", name: "quoteTwo", widget: "text" }
+          - { label: "Guardians heading", name: "guardiansTitle", widget: "string" }
+          - { label: "Guardians introduction", name: "guardiansIntro", widget: "text" }
+          - { label: "First guardian name", name: "jayName", widget: "string" }
+          - label: "First guardian biography"
+            name: "jayBio"
+            widget: "list"
+            hint: "Each item becomes a separate paragraph."
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Second guardian name", name: "jasonName", widget: "string" }
+          - label: "Second guardian biography"
+            name: "jasonBio"
+            widget: "list"
+            hint: "Each item becomes a separate paragraph."
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - label: "Second guardian link"
+            name: "jasonLink"
+            widget: "object"
+            fields:
+              - { label: "Introductory text", name: "prefix", widget: "string", required: false }
+              - { label: "Link text", name: "label", widget: "string" }
+              - { label: "Link URL", name: "url", widget: "string" }
+          - { label: "Notes section heading", name: "notesTitle", widget: "string" }
+          - { label: "Notes section subheading", name: "notesSubtitle", widget: "string" }
       - name: "purpose"
         label: "Purpose page"
-        file: "purpose.html"
+        file: "data/purpose.json"
         fields:
-          - label: "Page HTML"
-            name: "body"
-            widget: "text"
+          - { label: "Page heading", name: "pageTitle", widget: "string" }
+          - label: "Opening paragraphs"
+            name: "intro"
+            widget: "list"
+            hint: "Each item becomes a separate paragraph."
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Context heading", name: "contextTitle", widget: "string" }
+          - label: "Context paragraphs"
+            name: "context"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Landcare heading", name: "landcareTitle", widget: "string" }
+          - label: "Landcare paragraphs"
+            name: "landcare"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Opportunities heading", name: "opportunitiesTitle", widget: "string" }
+          - label: "Opportunities"
+            name: "opportunities"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - label: "Numbered requirements (optional)"
+                name: "bullets"
+                widget: "list"
+                required: false
+                field: { label: "Requirement", name: "requirement", widget: "string" }
+              - label: "Optional link"
+                name: "link"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Introductory text", name: "prefix", widget: "string", required: false }
+                  - { label: "Link text", name: "label", widget: "string", required: false }
+                  - { label: "Link URL", name: "url", widget: "string", required: false }
       - name: "events"
         label: "Events page"
-        file: "events.html"
+        file: "data/events.json"
         fields:
-          - label: "Page HTML"
-            name: "body"
-            widget: "text"
+          - { label: "Page heading", name: "pageTitle", widget: "string" }
+          - { label: "Upcoming events heading", name: "upcomingTitle", widget: "string" }
+          - { label: "In-progress events heading", name: "inProgressTitle", widget: "string" }
+          - { label: "Past spaces heading", name: "pastSpacesTitle", widget: "string" }
+          - { label: "Past events heading", name: "pastEventsTitle", widget: "string" }
+          - label: "Past-event stories"
+            name: "pastEvents"
+            widget: "object"
+            fields:
+              - label: "Momentum"
+                name: "momentum"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - label: "Description paragraphs"
+                    name: "description"
+                    widget: "list"
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+                  - label: "Testimonial paragraphs"
+                    name: "testimonial"
+                    widget: "list"
+                    hint: "Add the author attribution as the final item, beginning with an em dash."
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - label: "Gaian Mens Bridge House"
+                name: "bridgeHouse"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - label: "Description paragraphs"
+                    name: "description"
+                    widget: "list"
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+                  - label: "First testimonial"
+                    name: "testimonialOne"
+                    widget: "list"
+                    hint: "Add the author attribution as the final item, beginning with an em dash."
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+                  - label: "Second testimonial"
+                    name: "testimonialTwo"
+                    widget: "list"
+                    hint: "Add the author attribution as the final item, beginning with an em dash."
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - label: "Togethering"
+                name: "togethering"
+                widget: "object"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - label: "Description paragraphs"
+                    name: "description"
+                    widget: "list"
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+                  - label: "Related article link"
+                    name: "article"
+                    widget: "object"
+                    fields:
+                      - { label: "Introductory text", name: "prefix", widget: "string" }
+                      - { label: "Link text", name: "label", widget: "string" }
+                      - { label: "Link URL", name: "url", widget: "string" }
+                  - label: "Poem / quote lines"
+                    name: "poem"
+                    widget: "list"
+                    hint: "Each item is displayed as one paragraph. Use line breaks within an item for verse lines. Add the author attribution as the final item."
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
       - name: "contact"
         label: "Contact page"
-        file: "contact.html"
+        file: "data/contact.json"
         fields:
-          - label: "Page HTML"
-            name: "body"
-            widget: "text"
+          - { label: "Page heading", name: "pageTitle", widget: "string" }
+          - { label: "Email section heading", name: "emailHeading", widget: "string" }
+          - { label: "Address section heading", name: "addressHeading", widget: "string" }
+          - { label: "Contact-form note", name: "formNote", widget: "text" }
+          - { label: "Send button label", name: "submitLabel", widget: "string" }
+          - { label: "Map button label", name: "mapButtonLabel", widget: "string" }
 
 # ------------------------------------------------------------
 # Optional local development: uncomment the line below and run
