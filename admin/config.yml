@@ -106,36 +106,28 @@ collections:
         fields:
           - label: "Page HTML"
             name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
+            widget: "text"
       - name: "purpose"
         label: "Purpose page"
         file: "purpose.html"
         fields:
           - label: "Page HTML"
             name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
+            widget: "text"
       - name: "events"
         label: "Events page"
         file: "events.html"
         fields:
           - label: "Page HTML"
             name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
+            widget: "text"
       - name: "contact"
         label: "Contact page"
         file: "contact.html"
         fields:
           - label: "Page HTML"
             name: "body"
-            widget: "code"
-            default_language: "html"
-            allow_language_selection: false
+            widget: "text"
 
 # ------------------------------------------------------------
 # Optional local development: uncomment the line below and run
