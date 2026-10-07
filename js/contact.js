@@ -1,5 +1,5 @@
 /* ============================================================
-   Contact page — details, map and form.
+   Contact page — details, map and EmailJS contact form.
 
    All editable values come from SITE_CONFIG, loaded from data/config.json
    (edit via the CMS admin: /admin → Site settings).
@@ -59,9 +59,10 @@
   var form = document.getElementById("contact-form");
   var msg = document.getElementById("form-msg");
   if (form && msg) {
-    var endpoint = cfg ? String(cfg.FORM_ENDPOINT || "") : "";
-    var endpointReady =
-      endpoint && endpoint.indexOf(PLACEHOLDER) === -1 && /^https:\/\//.test(endpoint);
+    var EMAILJS_SERVICE_ID = "service_xuxuvk9";
+    var EMAILJS_TEMPLATE_ID = "template_d6s7t59";
+    var EMAILJS_PUBLIC_KEY = "87t0UmWpwho8XwMZ6";
+    var formReady = true;
 
     function showMessage(kind, text) {
       msg.setAttribute("data-type", kind);
@@ -69,6 +70,10 @@
       msg.removeAttribute("hidden");
       msg.setAttribute("role", "status");
       msg.setAttribute("aria-live", "polite");
+    }
+
+    if (window.emailjs && typeof window.emailjs.init === "function") {
+      window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
     }
 
     form.addEventListener("submit", function (ev) {
@@ -85,32 +90,21 @@
         showMessage("error", "Please enter a valid email address.");
         return;
       }
-      if (!endpointReady) {
+      if (!window.emailjs || typeof window.emailjs.send !== "function") {
         showMessage(
           "error",
-          "This form is not connected to an inbox yet. Please email us directly at the address above."
+          "The contact form could not load. Please try again, or email us directly at the address above."
         );
-        /* TODO: create a form at formspree.io and paste its URL into
-           SITE_CONFIG.FORM_ENDPOINT in js/config.js. Once set, the
-           form submits to that endpoint automatically. */
         return;
       }
+      if (!formReady) return;
 
-      endpointReady = false; /* prevent double submit */
-      fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
+      formReady = false; /* prevent double submit */
+      window.emailjs
+        .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           name: name,
-          _replyto: emailAddr,
           email: emailAddr,
-          message: message,
-          _subject: "Message from the Ahi o te Manawa website"
-        })
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          return res.json();
+          message: message
         })
         .then(function () {
           showMessage(
@@ -118,13 +112,14 @@
             "Thank you — your message has been sent. We'll be in touch soon."
           );
           form.reset();
+          formReady = true;
         })
         .catch(function () {
           showMessage(
             "error",
             "Your message could not be sent just now. Please try again, or email us directly at the address above."
           );
-          endpointReady = true;
+          formReady = true;
         });
     });
   }

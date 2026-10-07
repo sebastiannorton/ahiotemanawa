@@ -162,24 +162,19 @@ Cards beneath the Kaitiaki/Guardians section preview recent posts from the
 Everything is set from `data/config.json` — edit it in the CMS
 (`/admin` → **Site settings**) rather than by hand:
 
-- `contactEmail` — the address shown and emailed (currently
-  `hello@ahiotemanawa.nz`).
+- `contactEmail` — the address shown on the page (currently
+  `ahiotemanawa@athedge.org`).
 - `addressLines` — the physical address shown.
 - `mapsEmbedSrc` — the **Google Maps embed URL** for the location. Get it on
   Google Maps: **Share → Embed a map → copy the
   `src="https://www.google.com/maps/embed?pb=..."` URL** and paste it here.
-- `FORM_ENDPOINT` — where the form posts. For a simple no-backend option:
-  1. Create a free form at **formspree.io**.
-  2. Copy the endpoint (e.g. `https://formspree.io/f/abcxyz`) and paste it in
-     the CMS (**Site settings → Contact form endpoint**).
-
-**EmailJS:** the plan is to move the contact form to EmailJS. When the EmailJS
-service keys are available, `js/contact.js` will be updated to send through
-EmailJS instead of posting to `FORM_ENDPOINT`. Until then the Formspree-style
-endpoint above is used.
-
-Until each value is real, the page shows a friendly placeholder with a
-`TODO:` marker.
+The contact form sends through **EmailJS**. Its service, template, public key,
+recipient address, and reply-to setting are intentionally managed in EmailJS,
+not in Decap CMS. The template receives `{{name}}`, `{{email}}`, and
+`{{message}}`; set its **To Email** to the inbox that should receive enquiries
+and its **Reply-To** field to `{{email}}`. The public key is safe to use in the
+browser; protect the EmailJS account and configure its allowed origins to the
+live site domain.
 
 ---
 
@@ -241,7 +236,7 @@ there is still **no build step**. The CMS is configured in `admin/config.yml`.
 
 | Collection | Edits | Notes |
 |---|---|---|
-| **Site settings** | `data/config.json` | Site name, tagline, contact email, address lines, Google Maps embed URL, contact form endpoint, events sheet URL, RSS feed URL, gallery sections. |
+| **Site settings** | `data/config.json` | Site name, tagline, displayed contact email, address lines, Google Maps embed URL, events sheet URL, RSS feed URL, gallery sections. |
 | **Pages** | `data/home.json`, `data/purpose.json`, `data/events.json`, `data/contact.json` | Friendly fields for the text shown on each page. The underlying layouts are protected. |
 | **Media** | `public/images/` | Images uploaded through the CMS land here. |
 
