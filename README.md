@@ -279,9 +279,21 @@ manifest.
    registration set to **Invite only**.
 2. Still under Identity: **Git gateway → Enable Git Gateway** (this generates
    the access token the CMS uses to commit to GitHub).
-3. **Identity → Invite users** → invite the client's email address.
-4. The client accepts the invite email (sets a password), then logs in at
-   `/admin`.
+3. **Fix the Identity email templates (required for invites):** the default
+   templates send users to the site homepage, which has no Identity widget,
+   so an invite link shows no "set a password" screen. In Netlify:
+   **Site configuration → Identity → Email templates** → open **Invite**
+   (and the other templates too) and change every `{{ siteURL }}/#…` link
+   to `{{ siteURL }}/admin/#…` — e.g.
+   `{{ siteURL }}/admin/#invite_token={{ token }}`. Save.
+4. **Identity → Invite users** → invite the client's email address.
+5. The client accepts the invite email (sets a password), then logs in at
+   `/admin` — with email + password, or the **Google** button if enabled
+   under Identity → External providers.
+
+The Netlify Identity widget script is included in the `<head>` of
+`admin/index.html` — it is what handles the invite token and the
+login / set-password screens on `/admin`.
 
 > If you later serve `/admin` from a domain other than the Netlify site URL,
 > add `base_url: https://YOUR-SITE.netlify.app` under `backend:` in
